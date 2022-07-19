@@ -22,14 +22,19 @@ class App extends React.Component {
                 humidity: '',
             },
             forecast: {
-
+                maxTemp: '',
+                minTemp: '',
+                nextDays: '',
             }
         };
     };
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post('/api/data', { city: this.state.input });
+
+        const response = await axios.post('/api/weather', { city: this.state.input });
+        const response2 = await axios.post('/api/forecast', { city: this.state.input });
+
         this.setState( (state) => {
             state.place = response.data.place;
             state.conditions.description = response.data.description;
@@ -44,6 +49,10 @@ class App extends React.Component {
             state.conditions.cloudiness = response.data.cloudiness;
             state.conditions.pressure = response.data.pressure;
             state.conditions.humidity = response.data.humidity;
+
+            state.forecast.nextDays = response2.data.nextDays;
+            state.forecast.maxTemp = response2.data.maxTemp;
+            state.forecast.minTemp = response2.data.minTemp;
             return state;
         });
     };
@@ -59,20 +68,64 @@ class App extends React.Component {
                     />
                     <button type="submit">submit</button>
                 </form>
-                
-                <p>{this.state.place}</p>
-                <p>{this.state.conditions.description}</p>
-                <img src={this.state.conditions.icon} />
-                <p>{this.state.conditions.temp}</p>
-                <p>{this.state.conditions.sensed}</p>
-                <p>{this.state.conditions.min}</p>
-                <p>{this.state.conditions.max}</p>
-                <p>{this.state.conditions.sunrise}</p>
-                <p>{this.state.conditions.sunset}</p>
-                <p>{this.state.conditions.wind}</p>
-                <p>{this.state.conditions.cloudiness}</p>
-                <p>{this.state.conditions.pressure}</p>
-                <p>{this.state.conditions.humidity}</p>
+                <p>{this.state.place}{this.state.conditions.description}<img src={this.state.conditions.icon} /></p>
+                <table>
+                    <thead>
+                        <th colSpan="10">weather</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>temp</th>
+                            <th>sensed</th>
+                            <th>min</th>
+                            <th>max</th>
+                            <th>sunrise</th>
+                            <th>sunset</th>
+                            <th>wind</th>
+                            <th>cloudiness</th>
+                            <th>pressure</th>
+                            <th>humidity</th>
+                        </tr>
+                        <tr>
+                            <td>{this.state.conditions.temp}</td>
+                            <td>{this.state.conditions.sensed}</td>
+                            <td>{this.state.conditions.min}</td>
+                            <td>{this.state.conditions.max}</td>
+                            <td>{this.state.conditions.sunrise}</td>
+                            <td>{this.state.conditions.sunset}</td>
+                            <td>{this.state.conditions.wind}</td>
+                            <td>{this.state.conditions.cloudiness}</td>
+                            <td>{this.state.conditions.pressure}</td>
+                            <td>{this.state.conditions.humidity}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <th colSpan="4">forecast</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{this.state.forecast.nextDays[0]}</th>
+                            <th>{this.state.forecast.nextDays[1]}</th>
+                            <th>{this.state.forecast.nextDays[2]}</th>
+                            <th>{this.state.forecast.nextDays[3]}</th>
+                        </tr>
+                        <tr>
+                            <td>{this.state.forecast.maxTemp[0]}</td>
+                            <td>{this.state.forecast.maxTemp[1]}</td>
+                            <td>{this.state.forecast.maxTemp[2]}</td>
+                            <td>{this.state.forecast.maxTemp[3]}</td>
+                        </tr>
+                        <tr>
+                            <td>{this.state.forecast.minTemp[0]}</td>
+                            <td>{this.state.forecast.minTemp[1]}</td>
+                            <td>{this.state.forecast.minTemp[2]}</td>
+                            <td>{this.state.forecast.minTemp[3]}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </>
         );
     };

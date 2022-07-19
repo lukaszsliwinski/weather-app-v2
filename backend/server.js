@@ -22,8 +22,8 @@ app.use(bp.urlencoded({ extended: true }));
 // Have Node serve the files for built React app
 app.use(express.static(path.resolve(__dirname, '../frontend/build')));
 
-// Handle POST requests to /api/data route
-app.post('/api/data', (req, res) => {
+// Handle POST requests to /api/weather route
+app.post('/api/weather', (req, res) => {
 
     // Get city name from request body
     const city = req.body.city;
@@ -34,6 +34,7 @@ app.post('/api/data', (req, res) => {
     axios.get(url)
         .then(response => {
             let weather = response.data;
+
             // post weather parameters
             res.json({ 
                 place: `${weather.name}, ${weather.sys.country}`,
@@ -53,12 +54,84 @@ app.post('/api/data', (req, res) => {
         })
         .catch(error => console.log(error))
 
-    // Format date to 'DD-MM-YYYY'
+    // Format time to 'HH:MM'
     const formatTime = function(unixTimestamp) {
         let date = new Date(unixTimestamp * 1000);
         let hours = date.getHours();
         let minutes = '0' + date.getMinutes();
         return hours + ':' + minutes.slice(-2);
+    };
+});
+
+
+// Handle POST requests to /api/forecast route
+app.post('/api/forecast', (req, res) => {
+
+    // Get city name from request body
+    const city = req.body.city;
+
+    // Create url for chosen city
+    const url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+
+    axios.get(url)
+        .then(response => {
+            let forecast = response.data;
+            
+            let maxTemp = [];
+            let minTemp = [];
+            let nextDays = [];
+
+            for (i = 0; i < forecast.list.length; i++) {
+                if (forecast.list[i].dt % 86400 == 0) {
+                    try {
+                        nextDays.push(dayOfWeek(forecast.list[i].dt));
+
+                        // Get max temperature for each day
+                        let foo = [
+                            forecast.list[i].main.temp_max,
+                            forecast.list[i+1].main.temp_max,
+                            forecast.list[i+2].main.temp_max,
+                            forecast.list[i+3].main.temp_max,
+                            forecast.list[i+4].main.temp_max,
+                            forecast.list[i+5].main.temp_max,
+                            forecast.list[i+6].main.temp_max,
+                            forecast.list[i+7].main.temp_max
+                        ];
+                        maxTemp.push(Math.max(...foo));
+
+                        // Get min temperature for each day
+                        let bar = [
+                            forecast.list[i].main.temp_min,
+                            forecast.list[i+1].main.temp_min,
+                            forecast.list[i+2].main.temp_min,
+                            forecast.list[i+3].main.temp_min,
+                            forecast.list[i+4].main.temp_min,
+                            forecast.list[i+5].main.temp_min,
+                            forecast.list[i+6].main.temp_min,
+                            forecast.list[i+7].main.temp_min
+                        ]
+                        minTemp.push(Math.min(...bar));
+
+                    } catch {
+                        break;
+                    };
+                };
+            };
+
+            // post forecast parameters
+            res.json({
+                maxTemp: maxTemp,
+                minTemp: minTemp,
+                nextDays: nextDays
+            });
+        })
+        .catch(error => console.log(error));
+
+    // Return day of a wee from timestamp
+    const dayOfWeek = function(unixTimestamp) {
+        let days = ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        let date = new Date(unixTimestamp * 1000);
+        return days[date.getDay()];
     };
 });
 
