@@ -63,7 +63,7 @@ app.post('/api/weather', (req, res) => {
     // Format time to 'HH:MM'
     const formatTime = function(unixTimestamp) {
         let date = new Date(unixTimestamp * 1000);
-        let hours = date.getHours();
+        let hours = date.getUTCHours();
         let minutes = '0' + date.getMinutes();
         return hours + ':' + minutes.slice(-2);
     };
@@ -87,12 +87,11 @@ app.post('/api/forecast', (req, res) => {
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
-
             for (i = 0; i < forecast.list.length; i++) {
-                if (forecast.list[i].dt % 86400 == 0) {
+                if ([0, 3600, 7200].includes((forecast.list[i].dt + forecast.city.timezone) % 86400)) {
                     try {
-                        nextDays.push(dayOfWeek(forecast.list[i].dt));
-
+                        // console.log(forecast.list[i].dt + forecast.city.timezone);
+                        nextDays.push(dayOfWeek((forecast.list[i].dt + forecast.city.timezone)));
                         // Get max temperature for each day
                         let foo = [
                             forecast.list[i].main.temp_max,
