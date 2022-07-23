@@ -52,13 +52,7 @@ app.post('/api/weather', (req, res) => {
                 humidity: `${weather.main.humidity}`
             });
         })
-        .catch(error => {
-            // console.log(city, error.response.data.message)
-            res.json({
-                err: error.response.data.message,
-                cod: error.response.data.cod,
-            })
-        });
+        .catch(() => res.json({err: `${city} not found`,}));
 
     // Format time to 'HH:MM'
     const formatTime = function(unixTimestamp) {
