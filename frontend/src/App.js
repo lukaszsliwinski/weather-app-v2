@@ -7,7 +7,7 @@ class App extends React.Component {
         this.state = {
             input: '',
             place: '',
-            // now: '',
+            now: '',
             conditions: {
                 description: '',
                 icon: '',
@@ -39,7 +39,7 @@ class App extends React.Component {
         } else {
 
             this.setState((state) => {
-                // state.now = response.data.now;
+                state.now = response.data.now;
                 state.place = response.data.place;
                 state.conditions.description = response.data.description;
                 state.conditions.icon = response.data.icon;
@@ -76,7 +76,7 @@ class App extends React.Component {
                     />
                     <button type="submit">submit</button>
                 </form>
-                <p>{this.state.place}&nbsp;{this.state.conditions.description}<img src={this.state.conditions.icon} /></p>
+                <p>{this.state.place}&nbsp;{this.state.now}&nbsp;{this.state.conditions.description}<img src={this.state.conditions.icon} /></p>
                 <table>
                     <thead>
                         <th colSpan="10">weather</th>

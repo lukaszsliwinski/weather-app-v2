@@ -4,6 +4,7 @@ const express = require('express');
 const bp = require('body-parser');
 const app = express();
 const axios = require('axios');
+const moment = require('moment'); // require
 
 // Dotenv package
 require('dotenv').config();
@@ -51,7 +52,7 @@ app.post('/api/weather', (req, res) => {
             https://openweathermap.org/forecast5
             */
             let nowPlusTimezone = weather.dt + weather.timezone;
-            // let currentDateTime = moment(nowPlusTimezone).format('dd-MM-YYYY hh:mm')
+            let currentDateTime = moment(nowPlusTimezone * 1000).utc(false).format('DD-MM-YYYY');
             for (i = 0; i < forecast.list.length; i++) {
                 /*
                 Handle first hour in every day
@@ -59,12 +60,12 @@ app.post('/api/weather', (req, res) => {
                 */
                 let dtPlusTimezone = forecast.list[i].dt + forecast.city.timezone;
                 if (
-                    dayOfWeek(nowPlusTimezone) != dayOfWeek(dtPlusTimezone) &&
+                    moment(nowPlusTimezone * 1000).utc(false).format('dddd') != moment(dtPlusTimezone * 1000).utc(false).format('dddd') &&
                     (dtPlusTimezone % 86400 >= 0 && dtPlusTimezone % 86400 <= 9900)     // Check the rest of division - 0 is 0:00, 9900 is 2:45
                     ) {
                     try {
                         // Push name of next day to the list
-                        nextDays.push(dayOfWeek(dtPlusTimezone));
+                        nextDays.push(moment(dtPlusTimezone * 1000).utc(false).format('dddd'));
 
                         // Get max temperature for each day
                         let foo = [
@@ -100,7 +101,7 @@ app.post('/api/weather', (req, res) => {
 
             // post weather and forecast parameters
             res.json({
-                // now: `${currentDateTime}`,
+                now: `${currentDateTime}`,
                 place: `${weather.name}, ${weather.sys.country}`,
                 description: `${weather.weather[0].description}`,
                 icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
@@ -108,8 +109,10 @@ app.post('/api/weather', (req, res) => {
                 sensed: `${Math.round(weather.main.feels_like)}`,
                 min: `${Math.round(weather.main.temp_min)}`,
                 max: `${Math.round(weather.main.temp_max)}`,
-                sunrise: `${formatTime(weather.sys.sunrise + weather.timezone)}`,
-                sunset: `${formatTime(weather.sys.sunset + weather.timezone)}`,
+                // sunrise: `${formatTime(weather.sys.sunrise + weather.timezone)}`,
+                // sunset: `${formatTime(weather.sys.sunset + weather.timezone)}`,
+                sunrise: `${moment((weather.sys.sunrise + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
+                sunset: `${moment((weather.sys.sunset + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
                 wind: `${Math.round(weather.wind.speed * 10) / 10}`,
                 cloudiness: `${weather.clouds.all}`,
                 pressure: `${Math.round(weather.main.pressure)}`,
@@ -126,22 +129,6 @@ app.post('/api/weather', (req, res) => {
                 message: `${city} not found`,
             });
         });
-
-
-    // Format time to 'HH:MM'
-    const formatTime = function(unixTimestamp) {
-        let date = new Date(unixTimestamp * 1000);
-        let hours = date.getUTCHours();
-        let minutes = '0' + date.getUTCMinutes();
-        return hours + ':' + minutes.slice(-2);
-    };
-
-    // Return day of a wee from timestamp
-    const dayOfWeek = function(unixTimestamp) {
-        let days = ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-        let date = new Date(unixTimestamp * 1000);
-        return days[date.getUTCDay()];
-    };
 });
 
 // All other GET requests not handled before will return our React app
