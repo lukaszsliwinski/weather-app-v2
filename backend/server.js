@@ -28,24 +28,44 @@ app.post('/api/weather', (req, res) => {
     // Get city name from request body
     let city = req.body.city;
 
-    // Create url for chosen city
-    let weatherReq = axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
-    let forecastReq = axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
+    // Create urls for chosen city
+    let weatherRequest = axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+    let forecastRequest = axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
 
     axios
-        .all([weatherReq, forecastReq])
-        .then(axios.spread((weatherRes, forecastRes) => {
-
-            let weather = weatherRes.data;
-            let forecast = forecastRes.data;
+        .all([weatherRequest, forecastRequest])
+        .then(axios.spread((weatherResponse, forecastResponse) => {
+            // Get current weather data
+            // https://openweathermap.org/current
+            let weather = weatherResponse.data;
+            // Get weather forecast data
+            let forecast = forecastResponse.data;
 
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
+
+            /*
+            Prepare forecast data: min and max temperature for next 4 days
+            The response provides forecast for nest 5 days every three hours
+            https://openweathermap.org/forecast5
+            */
+            let nowPlusTimezone = weather.dt + weather.timezone;
+            // let currentDateTime = moment(nowPlusTimezone).format('dd-MM-YYYY hh:mm')
             for (i = 0; i < forecast.list.length; i++) {
-                if ([0, 3600, 7200].includes((forecast.list[i].dt + forecast.city.timezone) % 86400)) {
+                /*
+                Handle first hour in every day
+                It could be from 0:00 to 2:45 depending on the timezone
+                */
+                let dtPlusTimezone = forecast.list[i].dt + forecast.city.timezone;
+                if (
+                    dayOfWeek(nowPlusTimezone) != dayOfWeek(dtPlusTimezone) &&
+                    (dtPlusTimezone % 86400 >= 0 && dtPlusTimezone % 86400 <= 9900)     // Check the rest of division - 0 is 0:00, 9900 is 2:45
+                    ) {
                     try {
-                        nextDays.push(dayOfWeek((forecast.list[i].dt + forecast.city.timezone)));
+                        // Push name of next day to the list
+                        nextDays.push(dayOfWeek(dtPlusTimezone));
+
                         // Get max temperature for each day
                         let foo = [
                             forecast.list[i].main.temp_max,
@@ -79,7 +99,8 @@ app.post('/api/weather', (req, res) => {
             };
 
             // post weather and forecast parameters
-            res.json({ 
+            res.json({
+                // now: `${currentDateTime}`,
                 place: `${weather.name}, ${weather.sys.country}`,
                 description: `${weather.weather[0].description}`,
                 icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
@@ -100,7 +121,6 @@ app.post('/api/weather', (req, res) => {
             });
         }))
         .catch((error) => {
-            // console.log(error.response.status);
             res.json({
                 status: error.response.status,
                 message: `${city} not found`,
@@ -112,7 +132,7 @@ app.post('/api/weather', (req, res) => {
     const formatTime = function(unixTimestamp) {
         let date = new Date(unixTimestamp * 1000);
         let hours = date.getUTCHours();
-        let minutes = '0' + date.getMinutes();
+        let minutes = '0' + date.getUTCMinutes();
         return hours + ':' + minutes.slice(-2);
     };
 
@@ -120,8 +140,7 @@ app.post('/api/weather', (req, res) => {
     const dayOfWeek = function(unixTimestamp) {
         let days = ['Sunday', 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
         let date = new Date(unixTimestamp * 1000);
-        console.log(date);
-        return days[date.getDay()];
+        return days[date.getUTCDay()];
     };
 });
 

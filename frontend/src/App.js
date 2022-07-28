@@ -7,6 +7,7 @@ class App extends React.Component {
         this.state = {
             input: '',
             place: '',
+            // now: '',
             conditions: {
                 description: '',
                 icon: '',
@@ -37,7 +38,8 @@ class App extends React.Component {
             alert(response.data.message);
         } else {
 
-            this.setState( (state) => {
+            this.setState((state) => {
+                // state.now = response.data.now;
                 state.place = response.data.place;
                 state.conditions.description = response.data.description;
                 state.conditions.icon = response.data.icon;
