@@ -22,9 +22,9 @@ class App extends React.Component {
                 humidity: '',
             },
             forecast: {
-                maxTemp: '',
-                minTemp: '',
-                nextDays: '',
+                maxTemp: ['', '', '', ''],
+                minTemp: ['', '', '', ''],
+                nextDays: ['', '', '', ''],
             }
         };
     };
@@ -33,10 +33,9 @@ class App extends React.Component {
         e.preventDefault();
 
         const response = await axios.post('/api/weather', { city: this.state.input });
-        if (response.data.cod == '404') {
-            alert(this.state.input + ' ' + response.data.err);
+        if (response.data.status == '404') {
+            alert(response.data.message);
         } else {
-            const response2 = await axios.post('/api/forecast', { city: this.state.input });
 
             this.setState( (state) => {
                 state.place = response.data.place;
@@ -53,9 +52,9 @@ class App extends React.Component {
                 state.conditions.pressure = response.data.pressure;
                 state.conditions.humidity = response.data.humidity;
     
-                state.forecast.nextDays = response2.data.nextDays;
-                state.forecast.maxTemp = response2.data.maxTemp;
-                state.forecast.minTemp = response2.data.minTemp;
+                state.forecast.nextDays = response.data.nextDays;
+                state.forecast.maxTemp = response.data.maxTemp;
+                state.forecast.minTemp = response.data.minTemp;
                 return state;
             });
         };
