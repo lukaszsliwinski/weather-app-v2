@@ -29,7 +29,7 @@ weather = (req, res) => {
 
             let hours = [];
             let temp = [];
-            let icon = [];
+            let icons = [];
 
             /*
             Prepare forecast data: min and max temperature for next 4 days
@@ -55,31 +55,19 @@ weather = (req, res) => {
 
                         ///// Main daily forecast /////
 
-                        // Get max temperature for each day
-                        let minT = [
-                            Math.round(forecast.list[i].main.temp_max),
-                            Math.round(forecast.list[i+1].main.temp_max),
-                            Math.round(forecast.list[i+2].main.temp_max),
-                            Math.round(forecast.list[i+3].main.temp_max),
-                            Math.round(forecast.list[i+4].main.temp_max),
-                            Math.round(forecast.list[i+5].main.temp_max),
-                            Math.round(forecast.list[i+6].main.temp_max),
-                            Math.round(forecast.list[i+7].main.temp_max)
+                        // Get max and min temperature for each day
+                        let tempList = [
+                            Math.round(forecast.list[i].main.temp),
+                            Math.round(forecast.list[i+1].main.temp),
+                            Math.round(forecast.list[i+2].main.temp),
+                            Math.round(forecast.list[i+3].main.temp),
+                            Math.round(forecast.list[i+4].main.temp),
+                            Math.round(forecast.list[i+5].main.temp),
+                            Math.round(forecast.list[i+6].main.temp),
+                            Math.round(forecast.list[i+7].main.temp)
                         ];
-                        maxTemp.push(Math.max(...minT));
-
-                        // Get min temperature for each day
-                        let maxT = [
-                            Math.round(forecast.list[i].main.temp_min),
-                            Math.round(forecast.list[i+1].main.temp_min),
-                            Math.round(forecast.list[i+2].main.temp_min),
-                            Math.round(forecast.list[i+3].main.temp_min),
-                            Math.round(forecast.list[i+4].main.temp_min),
-                            Math.round(forecast.list[i+5].main.temp_min),
-                            Math.round(forecast.list[i+6].main.temp_min),
-                            Math.round(forecast.list[i+7].main.temp_min)
-                        ];
-                        minTemp.push(Math.min(...maxT));
+                        maxTemp.push(Math.max(...tempList));
+                        minTemp.push(Math.min(...tempList));
 
 
                         ///// Hourly forecast /////
@@ -97,27 +85,18 @@ weather = (req, res) => {
                         ]);
 
                         // Get temp for every hour
-                        temp.push([
-                            Math.round(forecast.list[i].main.temp),
-                            Math.round(forecast.list[i+1].main.temp),
-                            Math.round(forecast.list[i+2].main.temp),
-                            Math.round(forecast.list[i+3].main.temp),
-                            Math.round(forecast.list[i+4].main.temp),
-                            Math.round(forecast.list[i+5].main.temp),
-                            Math.round(forecast.list[i+6].main.temp),
-                            Math.round(forecast.list[i+7].main.temp)
-                        ]);
+                        temp.push(tempList);
 
                         // Get weather icon for every hour
-                        icon.push([
-                            `http://openweathermap.org/img/wn/${forecast.list[i].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+1].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+2].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+3].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+4].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+5].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+6].weather.icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+7].weather.icon}@2x.png`
+                        icons.push([
+                            `http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+1].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+2].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+3].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+4].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+5].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+6].weather[0].icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+7].weather[0].icon}@2x.png`
                         ]);
 
                     } catch {
@@ -152,7 +131,7 @@ weather = (req, res) => {
                 forecastDetails: {
                     hours: hours,
                     temp: temp,
-                    icon: icon
+                    icons: icons
                 }
             });
         }))
