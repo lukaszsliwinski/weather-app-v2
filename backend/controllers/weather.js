@@ -27,6 +27,10 @@ weather = (req, res) => {
             let minTemp = [];
             let nextDays = [];
 
+            let hours = [];
+            let temp = [];
+            let icon = [];
+
             /*
             Prepare forecast data: min and max temperature for next 4 days
             The response provides forecast for nest 5 days every three hours
@@ -48,31 +52,70 @@ weather = (req, res) => {
                         // Push name of next day to the list
                         nextDays.push(moment(dtPlusTimezone * 1000).utc(false).format('dddd'));
 
+
+                        ///// Main daily forecast /////
+
                         // Get max temperature for each day
-                        let foo = [
-                            forecast.list[i].main.temp_max,
-                            forecast.list[i+1].main.temp_max,
-                            forecast.list[i+2].main.temp_max,
-                            forecast.list[i+3].main.temp_max,
-                            forecast.list[i+4].main.temp_max,
-                            forecast.list[i+5].main.temp_max,
-                            forecast.list[i+6].main.temp_max,
-                            forecast.list[i+7].main.temp_max
+                        let minT = [
+                            Math.round(forecast.list[i].main.temp_max),
+                            Math.round(forecast.list[i+1].main.temp_max),
+                            Math.round(forecast.list[i+2].main.temp_max),
+                            Math.round(forecast.list[i+3].main.temp_max),
+                            Math.round(forecast.list[i+4].main.temp_max),
+                            Math.round(forecast.list[i+5].main.temp_max),
+                            Math.round(forecast.list[i+6].main.temp_max),
+                            Math.round(forecast.list[i+7].main.temp_max)
                         ];
-                        maxTemp.push(Math.max(...foo));
+                        maxTemp.push(Math.max(...minT));
 
                         // Get min temperature for each day
-                        let bar = [
-                            forecast.list[i].main.temp_min,
-                            forecast.list[i+1].main.temp_min,
-                            forecast.list[i+2].main.temp_min,
-                            forecast.list[i+3].main.temp_min,
-                            forecast.list[i+4].main.temp_min,
-                            forecast.list[i+5].main.temp_min,
-                            forecast.list[i+6].main.temp_min,
-                            forecast.list[i+7].main.temp_min
-                        ]
-                        minTemp.push(Math.min(...bar));
+                        let maxT = [
+                            Math.round(forecast.list[i].main.temp_min),
+                            Math.round(forecast.list[i+1].main.temp_min),
+                            Math.round(forecast.list[i+2].main.temp_min),
+                            Math.round(forecast.list[i+3].main.temp_min),
+                            Math.round(forecast.list[i+4].main.temp_min),
+                            Math.round(forecast.list[i+5].main.temp_min),
+                            Math.round(forecast.list[i+6].main.temp_min),
+                            Math.round(forecast.list[i+7].main.temp_min)
+                        ];
+                        minTemp.push(Math.min(...maxT));
+
+                        ///// Hourly forecast /////
+
+                        hours.push([
+                            moment((forecast.list[i].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+1].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+2].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+3].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+4].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+5].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+6].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                            moment((forecast.list[i+7].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm')
+                        ]);
+
+
+                        temp.push([
+                            Math.round(forecast.list[i].main.temp),
+                            Math.round(forecast.list[i+1].main.temp),
+                            Math.round(forecast.list[i+2].main.temp),
+                            Math.round(forecast.list[i+3].main.temp),
+                            Math.round(forecast.list[i+4].main.temp),
+                            Math.round(forecast.list[i+5].main.temp),
+                            Math.round(forecast.list[i+6].main.temp),
+                            Math.round(forecast.list[i+7].main.temp)
+                        ]);
+
+                        icon.push([
+                            `http://openweathermap.org/img/wn/${forecast.list[i].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+1].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+2].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+3].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+4].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+5].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+6].weather.icon}@2x.png`,
+                            `http://openweathermap.org/img/wn/${forecast.list[i+7].weather.icon}@2x.png`
+                        ]);
 
                     } catch {
                         break;
@@ -102,6 +145,11 @@ weather = (req, res) => {
                     maxTemp: maxTemp,
                     minTemp: minTemp,
                     nextDays: nextDays
+                },
+                forecastDetails: {
+                    hours: hours,
+                    temp: temp,
+                    icon: icon
                 }
             });
         }))
