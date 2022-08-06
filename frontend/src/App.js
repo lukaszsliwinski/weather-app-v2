@@ -1,142 +1,144 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            input: '',
-            place: '',
-            now: '',
-            conditions: {
-                description: '',
-                icon: '',
-                temp: '',
-                sensed: '',
-                min: '',
-                max: '',
-                sunrise: '',
-                sunset: '',
-                wind: '',
-                cloudiness: '',
-                pressure: '',
-                humidity: '',
-            },
-            forecast: {
-                maxTemp: ['', '', '', ''],
-                minTemp: ['', '', '', ''],
-                nextDays: ['', '', '', ''],
-            }
+function App() {
+    const [query, setQuery] = useState('');
+    const [data, setData] = useState({
+        input: '',
+        place: '',
+        now: '',
+        weather: {
+            description: '',
+            icon: '',
+            temp: '',
+            sensed: '',
+            min: '',
+            max: '',
+            sunrise: '',
+            sunset: '',
+            wind: '',
+            cloudiness: '',
+            pressure: '',
+            humidity: '',
+        },
+        forecast: {
+            maxTemp: ['', '', '', ''],
+            minTemp: ['', '', '', ''],
+            nextDays: ['', '', '', ''],
+        },
+    });
+
+
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            const response = await axios.post('/api/weather', { city: query });
+            
+            if (response.data.status == '404') {
+                alert(response.data.message);
+            } else {
+                setData({
+                    input: '',
+                    place: response.data.place,
+                    now: response.data.now,
+                    weather: {
+                        description: response.data.description,
+                        icon: response.data.icon,
+                        temp: response.data.temp,
+                        sensed: response.data.sensed,
+                        min: response.data.min,
+                        max: response.data.max,
+                        sunrise: response.data.sunrise,
+                        sunset: response.data.sunset,
+                        wind: response.data.wind,
+                        cloudiness: response.data.cloudiness,
+                        pressure: response.data.pressure,
+                        humidity: response.data.humidity,
+                    },
+                    forecast: {
+                        maxTemp: response.data.maxTemp,
+                        minTemp: response.data.minTemp,
+                        nextDays: response.data.nextDays,
+                    },
+                });
+            };
         };
-    };
-
-    handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const response = await axios.post('/api/weather', { city: this.state.input });
-        if (response.data.status == '404') {
-            alert(response.data.message);
-        } else {
-
-            this.setState((state) => {
-                state.now = response.data.now;
-                state.place = response.data.place;
-                state.conditions.description = response.data.description;
-                state.conditions.icon = response.data.icon;
-                state.conditions.temp = response.data.temp;
-                state.conditions.sensed = response.data.sensed;
-                state.conditions.min = response.data.min;
-                state.conditions.max = response.data.max;
-                state.conditions.sunrise = response.data.sunrise;
-                state.conditions.sunset = response.data.sunset;
-                state.conditions.wind = response.data.wind;
-                state.conditions.cloudiness = response.data.cloudiness;
-                state.conditions.pressure = response.data.pressure;
-                state.conditions.humidity = response.data.humidity;
-    
-                state.forecast.nextDays = response.data.nextDays;
-                state.forecast.maxTemp = response.data.maxTemp;
-                state.forecast.minTemp = response.data.minTemp;
-                return state;
-            });
-        };
-    };
 
 
 
 
-    render() {
-        return (
-            <>
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        value={this.state.input}
-                        onChange={e => this.setState({ input: e.target.value })}
-                    />
-                    <button type="submit">submit</button>
-                </form>
-                <p>{this.state.place}&nbsp;{this.state.now}&nbsp;{this.state.conditions.description}<img src={this.state.conditions.icon} /></p>
-                <table>
-                    <thead>
-                        <th colSpan="10">weather</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>temp</th>
-                            <th>sensed</th>
-                            <th>min</th>
-                            <th>max</th>
-                            <th>sunrise</th>
-                            <th>sunset</th>
-                            <th>wind</th>
-                            <th>cloudiness</th>
-                            <th>pressure</th>
-                            <th>humidity</th>
-                        </tr>
-                        <tr>
-                            <td className='rendered-data'>{this.state.conditions.temp}</td>
-                            <td className='rendered-data'>{this.state.conditions.sensed}</td>
-                            <td className='rendered-data'>{this.state.conditions.min}</td>
-                            <td className='rendered-data'>{this.state.conditions.max}</td>
-                            <td className='rendered-data'>{this.state.conditions.sunrise}</td>
-                            <td className='rendered-data'>{this.state.conditions.sunset}</td>
-                            <td className='rendered-data'>{this.state.conditions.wind}</td>
-                            <td className='rendered-data'>{this.state.conditions.cloudiness}</td>
-                            <td className='rendered-data'>{this.state.conditions.pressure}</td>
-                            <td className='rendered-data'>{this.state.conditions.humidity}</td>
-                        </tr>
-                    </tbody>
-                </table>
 
-                <table>
-                    <thead>
-                        <th colSpan="4">forecast</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th className='rendered-data'>{this.state.forecast.nextDays[0]}</th>
-                            <th className='rendered-data'>{this.state.forecast.nextDays[1]}</th>
-                            <th className='rendered-data'>{this.state.forecast.nextDays[2]}</th>
-                            <th className='rendered-data'>{this.state.forecast.nextDays[3]}</th>
-                        </tr>
-                        <tr>
-                            <td className='rendered-data'>{this.state.forecast.maxTemp[0]}</td>
-                            <td className='rendered-data'>{this.state.forecast.maxTemp[1]}</td>
-                            <td className='rendered-data'>{this.state.forecast.maxTemp[2]}</td>
-                            <td className='rendered-data'>{this.state.forecast.maxTemp[3]}</td>
-                        </tr>
-                        <tr>
-                            <td className='rendered-data'>{this.state.forecast.minTemp[0]}</td>
-                            <td className='rendered-data'>{this.state.forecast.minTemp[1]}</td>
-                            <td className='rendered-data'>{this.state.forecast.minTemp[2]}</td>
-                            <td className='rendered-data'>{this.state.forecast.minTemp[3]}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </>
-        );
-    };
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                />
+                <button type="submit">submit</button>
+            </form>
+            <p>{data.place}&nbsp;{data.now}&nbsp;{data.weather.description}<img src={data.weather.icon} /></p>
+            <table>
+                <thead>
+                    <th colSpan="10">weather</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>temp</th>
+                        <th>sensed</th>
+                        <th>min</th>
+                        <th>max</th>
+                        <th>sunrise</th>
+                        <th>sunset</th>
+                        <th>wind</th>
+                        <th>cloudiness</th>
+                        <th>pressure</th>
+                        <th>humidity</th>
+                    </tr>
+                    <tr>
+                        <td>{data.weather.temp}</td>
+                        <td>{data.weather.sensed}</td>
+                        <td>{data.weather.min}</td>
+                        <td>{data.weather.max}</td>
+                        <td>{data.weather.sunrise}</td>
+                        <td>{data.weather.sunset}</td>
+                        <td>{data.weather.wind}</td>
+                        <td>{data.weather.cloudiness}</td>
+                        <td>{data.weather.pressure}</td>
+                        <td>{data.weather.humidity}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <th colSpan="4">forecast</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>{data.forecast.nextDays[0]}</th>
+                        <th>{data.forecast.nextDays[1]}</th>
+                        <th>{data.forecast.nextDays[2]}</th>
+                        <th>{data.forecast.nextDays[3]}</th>
+                    </tr>
+                    <tr>
+                        <td>{data.forecast.maxTemp[0]}</td>
+                        <td>{data.forecast.maxTemp[1]}</td>
+                        <td>{data.forecast.maxTemp[2]}</td>
+                        <td>{data.forecast.maxTemp[3]}</td>
+                    </tr>
+                    <tr>
+                        <td>{data.forecast.minTemp[0]}</td>
+                        <td>{data.forecast.minTemp[1]}</td>
+                        <td>{data.forecast.minTemp[2]}</td>
+                        <td>{data.forecast.minTemp[3]}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </>
+    );
 };
 
 export default App;

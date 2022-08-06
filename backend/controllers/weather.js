@@ -90,8 +90,6 @@ weather = (req, res) => {
                 sensed: `${Math.round(weather.main.feels_like)}`,
                 min: `${Math.round(weather.main.temp_min)}`,
                 max: `${Math.round(weather.main.temp_max)}`,
-                // sunrise: `${formatTime(weather.sys.sunrise + weather.timezone)}`,
-                // sunset: `${formatTime(weather.sys.sunset + weather.timezone)}`,
                 sunrise: `${moment((weather.sys.sunrise + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
                 sunset: `${moment((weather.sys.sunset + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
                 wind: `${Math.round(weather.wind.speed * 10) / 10}`,
