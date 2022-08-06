@@ -82,24 +82,27 @@ weather = (req, res) => {
 
             // post weather and forecast parameters
             res.json({
-                now: `${currentDateTime}`,
                 place: `${weather.name}, ${weather.sys.country}`,
-                description: `${weather.weather[0].description}`,
-                icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
-                temp: `${Math.round(weather.main.temp)}`,
-                sensed: `${Math.round(weather.main.feels_like)}`,
-                min: `${Math.round(weather.main.temp_min)}`,
-                max: `${Math.round(weather.main.temp_max)}`,
-                sunrise: `${moment((weather.sys.sunrise + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
-                sunset: `${moment((weather.sys.sunset + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
-                wind: `${Math.round(weather.wind.speed * 10) / 10}`,
-                cloudiness: `${weather.clouds.all}`,
-                pressure: `${Math.round(weather.main.pressure)}`,
-                humidity: `${weather.main.humidity}`,
-
-                maxTemp: maxTemp,
-                minTemp: minTemp,
-                nextDays: nextDays
+                now: `${currentDateTime}`,
+                weather: {
+                    description: `${weather.weather[0].description}`,
+                    icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
+                    temp: `${Math.round(weather.main.temp)}`,
+                    sensed: `${Math.round(weather.main.feels_like)}`,
+                    min: `${Math.round(weather.main.temp_min)}`,
+                    max: `${Math.round(weather.main.temp_max)}`,
+                    sunrise: `${moment((weather.sys.sunrise + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
+                    sunset: `${moment((weather.sys.sunset + weather.timezone) * 1000).utc(false).format('HH:mm')}`,
+                    wind: `${Math.round(weather.wind.speed * 10) / 10}`,
+                    cloudiness: `${weather.clouds.all}`,
+                    pressure: `${Math.round(weather.main.pressure)}`,
+                    humidity: `${weather.main.humidity}`
+                },
+                forecast: {
+                    maxTemp: maxTemp,
+                    minTemp: minTemp,
+                    nextDays: nextDays
+                }
             });
         }))
         .catch((error) => {
