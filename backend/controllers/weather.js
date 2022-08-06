@@ -81,8 +81,10 @@ weather = (req, res) => {
                         ];
                         minTemp.push(Math.min(...maxT));
 
+
                         ///// Hourly forecast /////
 
+                        // Get hours for detailed forecast
                         hours.push([
                             moment((forecast.list[i].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
                             moment((forecast.list[i+1].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
@@ -94,7 +96,7 @@ weather = (req, res) => {
                             moment((forecast.list[i+7].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm')
                         ]);
 
-
+                        // Get temp for every hour
                         temp.push([
                             Math.round(forecast.list[i].main.temp),
                             Math.round(forecast.list[i+1].main.temp),
@@ -106,6 +108,7 @@ weather = (req, res) => {
                             Math.round(forecast.list[i+7].main.temp)
                         ]);
 
+                        // Get weather icon for every hour
                         icon.push([
                             `http://openweathermap.org/img/wn/${forecast.list[i].weather.icon}@2x.png`,
                             `http://openweathermap.org/img/wn/${forecast.list[i+1].weather.icon}@2x.png`,
