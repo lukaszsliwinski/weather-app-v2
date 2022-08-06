@@ -72,17 +72,19 @@ weather = (req, res) => {
 
                         ///// Hourly forecast /////
 
-                        // Get hours for detailed forecast
-                        hours.push([
-                            moment((forecast.list[i].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+1].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+2].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+3].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+4].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+5].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+6].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                            moment((forecast.list[i+7].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm')
-                        ]);
+                        // Get hours for detailed forecast, only once (hours for every day are the same)
+                        if (hours.length === 0) {
+                            hours.push(
+                                moment((forecast.list[i].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+1].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+2].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+3].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+4].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+5].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+6].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
+                                moment((forecast.list[i+7].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm')
+                            );
+                        };
 
                         // Get temp for every hour
                         temp.push(tempList);
