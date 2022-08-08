@@ -125,12 +125,7 @@ weather = (req, res) => {
                 }
             });
         }))
-        .catch((error) => {
-            res.json({
-                status: error.response.status,
-                message: `${city} not found`,
-            });
-        });
+        .catch(() => res.json({ msg: 'error' }));
 };
 
 module.exports = weather;

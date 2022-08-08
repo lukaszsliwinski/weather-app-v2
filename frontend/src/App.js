@@ -18,12 +18,16 @@ function App() {
     // fetch weather data on form submit
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await axios.post('/api/weather', { city: query });
-            
-        if (response.data.status == '404') {
-            alert(response.data.message);
+        if (typeof query !== 'string') {
+            alert(`${query} not found!`);
         } else {
-            setData(response.data);
+            const response = await axios.post('/api/weather', { city: query });
+
+            if (response.data.msg === 'error') {
+                alert(`${query} not found!`);
+            } else {
+                setData(response.data);
+            };
         };
     };
 
