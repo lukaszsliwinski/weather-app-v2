@@ -37,7 +37,8 @@ weather = (req, res) => {
             https://openweathermap.org/forecast5
             */
             let nowPlusTimezone = weather.dt + weather.timezone;
-            let currentDateTime = moment(nowPlusTimezone * 1000).utc(false).format('DD-MM-YYYY');
+            let currentDate = moment(nowPlusTimezone * 1000).utc(false).format('DD-MM-YYYY');
+            let currentTime = moment().utc(false).add(weather.timezone, 'seconds').format('HH:mm')
             for (i = 0; i < forecast.list.length; i++) {
                 /*
                 Handle first hour in every day
@@ -50,7 +51,7 @@ weather = (req, res) => {
                     ) {
                     try {
                         // Push name of next day to the list
-                        nextDays.push(moment(dtPlusTimezone * 1000).utc(false).format('dddd'));
+                        nextDays.push(moment(dtPlusTimezone * 1000).utc(true).format('dddd'));
 
 
                         ///// Main daily forecast /////
@@ -110,7 +111,8 @@ weather = (req, res) => {
             // post weather and forecast parameters
             res.json({
                 place: `${weather.name}, ${weather.sys.country}`,
-                now: `${currentDateTime}`,
+                today: `${currentDate}`,
+                now: `${currentTime}`,
                 weather: {
                     description: `${weather.weather[0].description}`,
                     icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,

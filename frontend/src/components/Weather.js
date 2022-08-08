@@ -17,7 +17,7 @@ function Weather({ data }) {
 
     return (
         <>
-            <p>{data.place}&nbsp;{data.now}&nbsp;{data.weather.description}<img src={data.weather.icon} /></p>
+            <p>{data.place}&nbsp;{data.today}&nbsp;{data.now}&nbsp;{data.weather.description}<img src={data.weather.icon} /></p>
             <table>
                 <thead>
                     <th colSpan="10">weather</th>
