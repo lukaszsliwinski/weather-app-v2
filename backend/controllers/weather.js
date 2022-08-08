@@ -57,16 +57,12 @@ weather = (req, res) => {
                         ///// Main daily forecast /////
 
                         // Get max and min temperature for each day
-                        let tempList = [
-                            Math.round(forecast.list[i].main.temp),
-                            Math.round(forecast.list[i+1].main.temp),
-                            Math.round(forecast.list[i+2].main.temp),
-                            Math.round(forecast.list[i+3].main.temp),
-                            Math.round(forecast.list[i+4].main.temp),
-                            Math.round(forecast.list[i+5].main.temp),
-                            Math.round(forecast.list[i+6].main.temp),
-                            Math.round(forecast.list[i+7].main.temp)
-                        ];
+                        let tempList = [];
+
+                        for (j = 0; j < 8; j++) {
+                            tempList.push(Math.round(forecast.list[i+j].main.temp));
+                        };
+
                         maxTemp.push(Math.max(...tempList));
                         minTemp.push(Math.min(...tempList));
 
@@ -75,32 +71,22 @@ weather = (req, res) => {
 
                         // Get hours for detailed forecast, only once (hours for every day are the same)
                         if (hours.length === 0) {
-                            hours.push(
-                                moment((forecast.list[i].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+1].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+2].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+3].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+4].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+5].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+6].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'),
-                                moment((forecast.list[i+7].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm')
-                            );
+                            for (j = 0; j < 8; j++) {
+                                hours.push(moment((forecast.list[i+j].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'));
+                            };
                         };
 
                         // Get temp for every hour
                         temp.push(tempList);
 
                         // Get weather icon for every hour
-                        icons.push([
-                            `http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+1].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+2].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+3].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+4].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+5].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+6].weather[0].icon}@2x.png`,
-                            `http://openweathermap.org/img/wn/${forecast.list[i+7].weather[0].icon}@2x.png`
-                        ]);
+                        let iconsList = [];
+
+                        for (j = 0; j < 8; j++) {
+                            iconsList.push(`http://openweathermap.org/img/wn/${forecast.list[i+j].weather[0].icon}@2x.png`);
+                        };
+                        
+                        icons.push(iconsList);
 
                     } catch {
                         break;
