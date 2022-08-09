@@ -23,6 +23,13 @@ weather = (req, res) => {
             // Get weather forecast data
             let forecast = forecastResponse.data;
 
+            // Get current timestamp from moment.js with timezone from response
+            let nowPlusTimezone = moment().utc(false).unix() + weather.timezone;
+            
+            // Get current date and time from moment.js to display on main page (it is more accurate than from Openweathermap)
+            let currentDate = moment().utc(false).add(weather.timezone, 'seconds').format('DD-MM-YYYY');
+            let currentTime = moment().utc(false).add(weather.timezone, 'seconds').format('HH:mm');
+
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
@@ -36,9 +43,6 @@ weather = (req, res) => {
             The response provides forecast for nest 5 days every three hours
             https://openweathermap.org/forecast5
             */
-            let nowPlusTimezone = weather.dt + weather.timezone;
-            let currentDate = moment(nowPlusTimezone * 1000).utc(false).format('DD-MM-YYYY');
-            let currentTime = moment().utc(false).add(weather.timezone, 'seconds').format('HH:mm')
             for (i = 0; i < forecast.list.length; i++) {
                 /*
                 Handle first hour in every day
