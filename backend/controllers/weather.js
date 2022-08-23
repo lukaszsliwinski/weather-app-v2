@@ -17,7 +17,9 @@ weather = (req, res) => {
     axios
         .all([weatherRequest, forecastRequest])
         .then(axios.spread((weatherResponse, forecastResponse) => {
-            // Get current weather data
+
+            ///// Get current weather data /////
+
             // https://openweathermap.org/current
             let weather = weatherResponse.data;
             // Get weather forecast data
@@ -30,6 +32,29 @@ weather = (req, res) => {
             let currentDate = moment().utc(false).add(weather.timezone, 'seconds').format('DD-MM-YYYY');
             let currentTime = moment().utc(false).add(weather.timezone, 'seconds').format('HH:mm');
 
+
+            ///// Get forecast for the next 24 hours /////
+            
+            let time24 = [];
+            let icons24 = [];
+            let temp24 = [];
+
+            for (i = 0; i < 8; i++) {
+                let dtPlusTimezone = forecast.list[i].dt + forecast.city.timezone;
+
+                time24.push(moment(dtPlusTimezone * 1000).utc(false).format('HH:mm'));
+                icons24.push(`http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`);
+                temp24.push(Math.round(forecast.list[i].main.temp));
+            };
+
+
+
+            /*
+            Prepare forecast data: min and max temperature for next 4 days
+            The response provides forecast for nest 5 days every three hours
+            https://openweathermap.org/forecast5
+            */
+
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
@@ -38,11 +63,6 @@ weather = (req, res) => {
             let temp = [];
             let icons = [];
 
-            /*
-            Prepare forecast data: min and max temperature for next 4 days
-            The response provides forecast for nest 5 days every three hours
-            https://openweathermap.org/forecast5
-            */
             for (i = 0; i < forecast.list.length; i++) {
                 /*
                 Handle first hour in every day
