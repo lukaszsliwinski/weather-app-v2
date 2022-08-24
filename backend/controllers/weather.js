@@ -58,6 +58,7 @@ weather = (req, res) => {
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
+            let dailyIcons = [];
 
             let hours = [];
             let temp = [];
@@ -89,6 +90,52 @@ weather = (req, res) => {
 
                         maxTemp.push(Math.max(...tempList));
                         minTemp.push(Math.min(...tempList));
+
+                        // Get daily representative icon and push into the list
+
+                        let iconStrList = [];
+
+                        for (j = 0; j < 8; j++) {
+                            let iconStr = forecast.list[i+j].weather[0].icon;
+
+                            // Check if icon is for a day
+                            // https://openweathermap.org/weather-conditions
+                            if (iconStr.slice(-1) == 'd') {
+                                iconStrList.push(iconStr);
+                            };
+                        };
+
+                        // Sort the icon list descending
+                        iconStrList.sort().reverse();
+
+                        // Create new list with unique icons sorted descending
+                        let uniq = [...new Set(iconStrList)];
+                        let result;
+
+                        if (iconStrList.length === uniq.length) {
+                            // If the icons do not repeat then the representative one 
+                            // is the first one in the list
+                            result = iconStrList[0];
+                        } else {
+                            // If the icons are repeated then the representative one 
+                            // is the one that repeats the most times
+                            
+                            // Create list with icons and their quantity
+                            let counted = [];
+                            uniq.forEach(item => {
+                                counted.push([item, iconStrList.filter(el => el == item).length]);
+                            });
+
+                            // Sort by icons quantity
+                            counted.sort(function(x, y) {
+                                return y[1] - x[1];
+                            });
+
+                            // Get the one that repeats the most times
+                            result = counted[0][0];
+                        };
+
+                        dailyIcons.push(`http://openweathermap.org/img/wn/${result}@2x.png`);
 
 
                         ///// Hourly forecast /////
@@ -138,9 +185,10 @@ weather = (req, res) => {
                     humidity: `${weather.main.humidity}`
                 },
                 forecast: {
+                    nextDays: nextDays,
+                    dailyIcons: dailyIcons,
                     maxTemp: maxTemp,
-                    minTemp: minTemp,
-                    nextDays: nextDays
+                    minTemp: minTemp
                 },
                 forecastDetails: {
                     hours: hours,
