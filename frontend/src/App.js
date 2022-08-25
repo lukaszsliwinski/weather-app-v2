@@ -2,17 +2,32 @@ import { useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// import react components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import FormGroup from 'react-bootstrap/FormGroup';
+import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+// import font awesome
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import Weather from './components/Weather';
+// import components
+import Main from './components/Main';
+import WeatherConditions from './components/WeatherConditions';
+import Next24HoursForecast from './components/Next24HoursForecast';
+import DailyForecast from './components/DailyForecast';
+
+// import scss
+import "./App.scss"; 
+
+// add font awesome icons to library
+library.add(fas, far);
+
 
 function App() {
     const [query, setQuery] = useState('');
@@ -44,11 +59,11 @@ function App() {
     };
 
     return (
-        <Container fluid="sm" className="">
+        <Container fluid="sm" className="mt-4 border pt-3 px-5">
             <Row>
-                <Col md={{ span: 10, offset: 1 }} className="">
+                <Col md={{ span: 6, offset: 3 }} className="">
                     <Form onSubmit={handleSubmit}>
-                        <FormGroup role="form" className="mb-3">
+                        <InputGroup role="form" className="mb-3">
                             <Form.Control
                                 placeholder="Enter a city"
                                 aria-describedby="search-button"
@@ -56,14 +71,16 @@ function App() {
                                 onChange={e => setQuery(e.target.value)}
                             />
                             <Button variant="" id="search-button">
-                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
                             </Button>
-                        </FormGroup>
+                        </InputGroup>
                     </Form>
                 </Col>
             </Row>
-
-            {!isEmpty(data)  && <Weather data={data} />}
+            {!isEmpty(data) && <Main data={data} />}
+            {!isEmpty(data) && <WeatherConditions data={data}/>}
+            {!isEmpty(data) && <Next24HoursForecast forecast24={data.forecast24}/>}
+            {!isEmpty(data) && <DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/>}
         </Container>
     );
 };

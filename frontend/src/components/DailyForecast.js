@@ -1,25 +1,39 @@
-function DailyForecast({ forecast }) {
-    let dayItems = [];
-    let maxTempItems = [];
-    let minTempItems = [];
-    
-    for (let i = 0; i < 4; i++) {
-        dayItems.push(<th>{forecast.nextDays[i]}</th>);
-        maxTempItems.push(<td>{forecast.maxTemp[i]}</td>);
-        minTempItems.push(<td>{forecast.minTemp[i]}</td>);
+// import react components
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
+// import components
+import DailyForecastCard from './DailyForecastCard';
+
+
+function DailyForecast({ forecast, forecastDetails }) {
+    let content = []
+
+    // List with forecast cards for each day
+    for (let i=0; i<4; i++) {
+        content.push(
+            <Col>
+                <DailyForecastCard 
+                    day={forecast.nextDays[i]}
+                    icon={forecast.dailyIcons[i]}
+                    max={forecast.maxTemp[i]}
+                    min={forecast.minTemp[i]}
+
+                    modalHours={forecastDetails.hours}
+                    modalIcons={forecastDetails.icons[i]}
+                    modalTemp={forecastDetails.temp[i]}
+                />
+            </Col>
+        );
     };
 
     return (
-        <table>
-            <thead>
-                <th colSpan="4">forecast</th>
-            </thead>
-            <tbody>
-                <tr>{dayItems}</tr>
-                <tr>{maxTempItems}</tr>
-                <tr>{minTempItems}</tr>
-            </tbody>
-        </table>
+        <>
+            <Row className=""><span className="frame-header">daily forecast</span></Row>
+            <Row className="my-2 border p-3">
+                {content}
+            </Row>     
+        </>
     );
 };
 

@@ -4,3 +4,18 @@
 // .bg-cold-blue {
 //     background-color: $indigo-200;
 // }
+
+.container-sm {
+    max-width: 800px;
+}
+
+.frame-header {
+    display: block;
+    transform: translateY(1.04rem);
+    margin-left: .5rem;
+    width: fit-content;
+    padding: 0 .25rem;
+    background-color: white;
+    font-size: .7rem;
+    font-weight: bold;
+}

@@ -1,1 +1,16 @@
-/*# sourceMappingURL=App.css.map */
+.container-sm {
+  max-width: 800px;
+}
+
+.frame-header {
+  display: block;
+  transform: translateY(1.04rem);
+  margin-left: 0.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 0.25rem;
+  background-color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+}/*# sourceMappingURL=App.css.map */

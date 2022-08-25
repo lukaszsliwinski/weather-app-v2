@@ -194,6 +194,11 @@ weather = (req, res) => {
                     hours: hours,
                     temp: temp,
                     icons: icons
+                },
+                forecast24: {
+                    time24: time24,
+                    icons24: icons24,
+                    temp24: temp24
                 }
             });
         }))
