@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 
 // import components
-import HourlyForecastModal from './HourlyForecastModal';
+import HourlyForecastModal from '../../HourlyForecast/HourlyForecastModal/HourlyForecastModal';
 
 
 function DailyForecastCard({ day, icon, max, min, modalHours, modalIcons, modalTemp }) {

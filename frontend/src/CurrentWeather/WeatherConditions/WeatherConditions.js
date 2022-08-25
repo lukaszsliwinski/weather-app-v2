@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // import components
-import ConditionItem from './ConditionItem';
+import ConditionItem from './ConditionItem/ConditionItem';
 
 
 function WeatherConditions({ data }) {

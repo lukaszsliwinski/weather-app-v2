@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // import components
-import HourlyForecastItem from './HourlyForecastItem';
+import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
 
 function Next24HoursForecast({ forecast24 }) {
     let content = []

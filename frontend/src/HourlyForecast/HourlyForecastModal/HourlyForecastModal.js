@@ -1,7 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 
 // import components
-import HourlyForecastItem from './HourlyForecastItem';
+import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
 
 function HourlyForecastModal(props) {
     let content = []

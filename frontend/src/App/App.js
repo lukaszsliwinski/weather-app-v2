@@ -17,10 +17,10 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import components
-import Main from './components/Main';
-import WeatherConditions from './components/WeatherConditions';
-import Next24HoursForecast from './components/Next24HoursForecast';
-import DailyForecast from './components/DailyForecast';
+import Main from '../CurrentWeather/Main/Main';
+import WeatherConditions from '../CurrentWeather/WeatherConditions/WeatherConditions';
+import Next24HoursForecast from '../HourlyForecast/Next24HoursForecast/Next24HoursForecast';
+import DailyForecast from '../DailyForecast/DailyForecast';
 
 // import scss
 import "./App.scss"; 

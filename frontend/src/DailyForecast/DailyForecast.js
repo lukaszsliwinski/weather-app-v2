@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 // import components
-import DailyForecastCard from './DailyForecastCard';
+import DailyForecastCard from './DailyForecastCard/DailyForecastCard';
 
 
 function DailyForecast({ forecast, forecastDetails }) {
