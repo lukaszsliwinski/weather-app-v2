@@ -1,4 +1,6 @@
+// import react components
 import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
 
 // import components
 import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
@@ -25,9 +27,9 @@ function HourlyForecastModal(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="d-flex justify-content-between">
+                <Col className="d-flex justify-content-between">
                     {content}
-                </div>
+                </Col>
             </Modal.Body>
         </Modal>
     );
