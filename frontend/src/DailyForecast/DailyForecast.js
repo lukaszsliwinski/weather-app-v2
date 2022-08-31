@@ -19,6 +19,7 @@ function DailyForecast({ forecast, forecastDetails }) {
                     max={forecast.maxTemp[i]}
                     min={forecast.minTemp[i]}
 
+                    modalDate={forecast.nextDates[i]}
                     modalHours={forecastDetails.hours}
                     modalIcons={forecastDetails.icons[i]}
                     modalTemp={forecastDetails.temp[i]}

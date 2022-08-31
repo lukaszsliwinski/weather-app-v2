@@ -58,6 +58,7 @@ weather = (req, res) => {
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
+            let nextDates = [];
             let dailyIcons = [];
 
             let hours = [];
@@ -77,6 +78,7 @@ weather = (req, res) => {
                     try {
                         // Push name of next day to the list
                         nextDays.push(moment(dtPlusTimezone * 1000).utc(true).format('dddd'));
+                        nextDates.push(moment(dtPlusTimezone * 1000).utc(true).format('DD-MM-YYYY'));
 
 
                         ///// Main daily forecast /////
@@ -186,6 +188,7 @@ weather = (req, res) => {
                 },
                 forecast: {
                     nextDays: nextDays,
+                    nextDates: nextDates,
                     dailyIcons: dailyIcons,
                     maxTemp: maxTemp,
                     minTemp: minTemp

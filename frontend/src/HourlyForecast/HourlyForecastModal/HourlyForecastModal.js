@@ -23,7 +23,7 @@ function HourlyForecastModal(props) {
         <Modal {...props} size="lg" centered>
             <Modal.Header closeButton>
                 <Modal.Title>
-                    {props.day}
+                    {props.day} {props.date}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>

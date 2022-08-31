@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import HourlyForecastModal from '../../HourlyForecast/HourlyForecastModal/HourlyForecastModal';
 
 
-function DailyForecastCard({ day, icon, max, min, modalHours, modalIcons, modalTemp }) {
+function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIcons, modalTemp }) {
     const [modalShow, setModalShow] = useState(false);
     
     return (
@@ -28,6 +28,7 @@ function DailyForecastCard({ day, icon, max, min, modalHours, modalIcons, modalT
             </Card>
             <HourlyForecastModal
                 day={day}
+                date={modalDate}
                 modalHours={modalHours}
                 modalIcons={modalIcons}
                 modalTemp={modalTemp}
