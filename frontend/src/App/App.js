@@ -17,6 +17,7 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import components
+import AlertModal from '../AlertModal/AlertModal';
 import Main from '../CurrentWeather/Main/Main';
 import WeatherConditions from '../CurrentWeather/WeatherConditions/WeatherConditions';
 import Next24HoursForecast from '../HourlyForecast/Next24HoursForecast/Next24HoursForecast';
@@ -32,6 +33,7 @@ library.add(fas, far);
 function App() {
     const [query, setQuery] = useState('');
     const [data, setData] = useState({});
+    const [show, setShow] = useState(false);
 
     // check if state obj is empty
     const isEmpty = (obj) => {
@@ -46,12 +48,12 @@ function App() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (typeof query !== 'string') {
-            alert(`${query} not found!`);
+            setShow(true);
         } else {
             const response = await axios.post('/api/weather', { city: query });
 
             if (response.data.msg === 'error') {
-                alert(`${query} not found!`);
+                setShow(true);
             } else {
                 setData(response.data);
             };
@@ -77,6 +79,7 @@ function App() {
                     </Form>
                 </Col>
             </Row>
+            {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
             {!isEmpty(data) && <Main data={data} />}
             {!isEmpty(data) && <WeatherConditions data={data}/>}
             {!isEmpty(data) && <Next24HoursForecast forecast24={data.forecast24}/>}
