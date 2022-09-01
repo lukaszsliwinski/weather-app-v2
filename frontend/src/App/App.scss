@@ -1,9 +1,7 @@
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
-
-// .bg-cold-blue {
-//     background-color: $indigo-200;
-// }
+@import "../../node_modules/bootstrap/scss/mixins/box-shadow";
+@import "../../node_modules/bootstrap/scss/mixins/transition";
 
 .container-sm {
     max-width: 800px;
@@ -18,4 +16,57 @@
     background-color: white;
     font-size: .7rem;
     font-weight: bold;
+}
+
+
+// Overwrite search input style
+
+$input-box-shadow: none;
+$input-focus-box-shadow: none;
+$input-focus-border-color: $secondary;   // change when colors will be chosen
+
+.form-control {
+  @include box-shadow($input-box-shadow);
+  &:focus {
+    border-color: $input-focus-border-color;
+    @if $enable-shadows {
+      @include box-shadow($input-box-shadow, $input-focus-box-shadow);
+    } @else {
+      // Avoid using mixin so we can pass custom focus shadow properly
+      box-shadow: $input-focus-box-shadow;
+    }
+  }
+}
+
+
+$input-placeholder-color1: $secondary;   // change when colors will be chosen
+$input-placeholder-color2: $secondary;
+
+$form-floating-transition: color .3s ease-in-out, transform .3s ease;
+$form-floating-label-transform: scale(.65) translateY(-.7rem) translateX(.4rem);
+
+.form-floating {
+  > label {
+    color: $input-placeholder-color1;
+    @include transition($form-floating-transition);
+  }
+
+  > .form-control:focus,
+  > .form-control:not(:placeholder-shown),
+  > .form-control-plaintext,
+  > .form-select {
+    ~ label {
+      color: $input-placeholder-color2;
+      opacity: 1;
+      transform: $form-floating-label-transform;
+    }
+  }
+  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+  > .form-control:-webkit-autofill {
+    ~ label {
+      color: $input-placeholder-color2;
+      opacity: 1;
+      transform: $form-floating-label-transform;
+    }
+  }
 }
