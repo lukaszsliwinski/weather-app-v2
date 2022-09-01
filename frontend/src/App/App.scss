@@ -3,6 +3,22 @@
 @import "../../node_modules/bootstrap/scss/mixins/box-shadow";
 @import "../../node_modules/bootstrap/scss/mixins/transition";
 
+// Custom font sizes
+.fs-080 {
+  font-size: .8rem;
+}
+
+.fs-090 {
+  font-size: .9rem;
+}
+
+
+// Custom img sizes
+.img-size-120 {
+  width: 120%;
+}
+
+
 .container-sm {
     max-width: 800px;
 }
