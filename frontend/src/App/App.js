@@ -80,6 +80,7 @@ function App() {
                                     onChange={e => setQuery(e.target.value)}
                                     onMouseEnter={() => setFocus(true)}
                                     onMouseLeave={() => setFocus(false)}
+                                    required
                                     className="mb-2 fs-5"
                                 />
                             </FloatingLabel>
