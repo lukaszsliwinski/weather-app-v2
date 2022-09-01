@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 // import react components
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -9,8 +11,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function AlertModal({ setShow, show, query }) {
     const handleClose = () => setShow(false);
 
+    // focus buttton after render to allow closing the modal by enter
+    const btn = useRef();
+    useEffect(() => {
+        if (btn.current) {
+            btn.current.focus();
+        };
+    }, [show]);
+
     return (
-        <Modal size="sm" show={show} onHide={handleClose}>
+        <Modal
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+        >
             <Modal.Header closeButton>
                 <Modal.Title>
                     <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" />&nbsp;
@@ -18,7 +32,7 @@ function AlertModal({ setShow, show, query }) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Footer className="border-0">
-                <Button variant="outline-danger" onClick={handleClose}>
+                <Button ref={btn} variant="outline-danger" onClick={handleClose}>
                     Close and try again!
                 </Button>
             </Modal.Footer>
