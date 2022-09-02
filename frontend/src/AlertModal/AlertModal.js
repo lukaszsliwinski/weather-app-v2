@@ -7,20 +7,20 @@ import Button from 'react-bootstrap/Button';
 // import font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// import scss
+import "./AlertModal.scss"; 
+
 
 function AlertModal({ setShow, show, query }) {
     const handleClose = () => setShow(false);
 
     // focus buttton after render to allow closing the modal by enter
     const btn = useRef();
-    useEffect(() => {
-        if (btn.current) {
-            btn.current.focus();
-        };
-    }, [show]);
+    useEffect(() => {if (btn.current) btn.current.focus()}, [show]);
 
     return (
         <Modal
+            id="alertModal"
             show={show}
             onHide={handleClose}
             backdrop="static"
