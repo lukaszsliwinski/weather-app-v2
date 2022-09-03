@@ -1,7 +1,16 @@
 // Custom font sizes
+.fs-070 {
+  font-size: .7rem;
+}
+
 .fs-080 {
   font-size: .8rem;
 }
+
+.fs-085 {
+  font-size: .85rem;
+}
+
 
 .fs-090 {
   font-size: .9rem;
@@ -21,7 +30,7 @@
 .frame-header {
     display: block;
     transform: translateY(1.04rem);
-    margin-left: .5rem;
+    margin-left: .75rem;
     width: fit-content;
     padding: 0 .25rem;
     background-color: white;

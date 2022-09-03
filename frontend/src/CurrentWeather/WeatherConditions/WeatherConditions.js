@@ -10,7 +10,7 @@ function WeatherConditions({ data }) {
     return (
         <>
             <Row className=""><span className="frame-header">conditions</span></Row>
-            <Row className="my-2 border p-3">
+            <Row className="my-2 border rounded p-3">
                 <Col>
                     <ConditionItem title="max temp" icon="fa-solid fa-temperature-arrow-up" data={data.weather.max} unit="°C" />
                     <ConditionItem title="min temp" icon="fa-solid fa-temperature-arrow-down" data={data.weather.min} unit="°C" />

@@ -1,12 +1,20 @@
+// import react components
+import Card from 'react-bootstrap/Card';
+
 // import font awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ConditionItem({ title, icon, data, unit }) {
     return (
-        <>
-            <div className="fw-semibold">{title}</div>
-            <div><FontAwesomeIcon icon={icon} fixedWidth />&nbsp;{data}{unit}</div>
-        </>
+        <Card className="mb-1 border-0">
+            <Card.Body className="p-0 text-center">
+                <Card.Title className="mb-1">
+                    <span className="border-bottom fs-085"><FontAwesomeIcon icon={icon} size="xs" fixedWidth />&nbsp;{title}</span></Card.Title>
+                <Card.Text className="fs-5 fw-semibold">
+                    {data}{unit}
+                </Card.Text>
+            </Card.Body>
+        </Card>
     );
 };
 
