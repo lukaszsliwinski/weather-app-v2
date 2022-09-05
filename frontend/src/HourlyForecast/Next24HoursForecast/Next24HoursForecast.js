@@ -22,7 +22,7 @@ function Next24HoursForecast({ forecast24 }) {
     return (
         <>
             <Row className=""><span className="frame-header">next 24 hours</span></Row>
-            <Row className="my-2 border p-3">
+            <Row className="my-2 border rounded p-3">
                 <Col className="d-flex justify-content-between">
                     {content}
                 </Col>

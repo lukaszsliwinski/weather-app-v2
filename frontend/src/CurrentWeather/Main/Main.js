@@ -24,7 +24,7 @@ function Main({ data }) {
             </Row>
             <Row>
                 <Col sm={{ span: 2, offset: 4 }}>
-                    <Image className="img-size-120" src={data.weather.icon} alt="Weather icon" />
+                    <Image className="w-120" src={data.weather.icon} alt="Weather icon" />
                 </Col>
                 <Col sm={2} className="d-flex flex-column justify-content-center align-items-center">
                     <span className="fs-1">
