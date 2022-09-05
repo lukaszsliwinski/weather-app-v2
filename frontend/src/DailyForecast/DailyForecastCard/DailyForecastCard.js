@@ -18,19 +18,14 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
         <>
             <div className="text-center">
                 <div className="fw-semibold fs-080">{day}</div>
-                <div>
-                    <Image src={icon} alt="Weather icon" />
-                        <div className="fw-semibold fs-115">
-                            <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth />
-                            &nbsp;{max}°C
-                        </div>
-                        <div className="fw-semibold fs-115">
-                            <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth />
-                            &nbsp;{min}°C
-                        </div>
-                        <div className="fw-semibold fs-115">
-
-                        </div>
+                <Image src={icon} alt="Weather icon" />
+                <div className="fw-semibold fs-115">
+                    <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth />
+                    &nbsp;{max}°C
+                </div>
+                <div className="fw-semibold fs-115">
+                    <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth />
+                    &nbsp;{min}°C
                 </div>
                 <Button variant="outline-dark" size="sm" className="mt-2"
                     onClick={() => setModalShow(true)}>
