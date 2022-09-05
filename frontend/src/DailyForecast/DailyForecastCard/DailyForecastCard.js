@@ -17,7 +17,7 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
     return (
         <>
             <div className="text-center">
-                <div className="fw-semibold fs-080">{day}</div>
+                <div className="fw-semibold">{day}</div>
                 <Image src={icon} alt="Weather icon" />
                 <div className="fw-semibold fs-115">
                     <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth />
