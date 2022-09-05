@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 // import react components
-import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+
+// import font awesome
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import components
 import HourlyForecastModal from '../../HourlyForecast/HourlyForecastModal/HourlyForecastModal';
@@ -14,18 +16,27 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
     
     return (
         <>
-            <Card className="text-center">
-                <Card.Header as="h6">{day}</Card.Header>
-                <Card.Body>
+            <div className="text-center">
+                <div className="fw-semibold fs-080">{day}</div>
+                <div>
                     <Image src={icon} alt="Weather icon" />
-                    <div>{max}°C / {min}°C</div>
-                </Card.Body>
-                <Card.Footer>
-                    <Button variant="outline-dark" size="sm" onClick={() => setModalShow(true)}>
-                        hourly
-                    </Button>
-                </Card.Footer>
-            </Card>
+                        <div className="fw-semibold fs-115">
+                            <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth />
+                            &nbsp;{max}°C
+                        </div>
+                        <div className="fw-semibold fs-115">
+                            <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth />
+                            &nbsp;{min}°C
+                        </div>
+                        <div className="fw-semibold fs-115">
+
+                        </div>
+                </div>
+                <Button variant="outline-dark" size="sm" className="mt-2"
+                    onClick={() => setModalShow(true)}>
+                    hourly
+                </Button>
+            </div>
             <HourlyForecastModal
                 day={day}
                 date={modalDate}

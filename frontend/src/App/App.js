@@ -40,7 +40,7 @@ function App() {
 
 
     return (
-        <Container fluid="sm" className="mt-4 border pt-3 px-5">
+        <Container fluid="sm" className="my-4 border rounded mw-800p pt-3 px-5">
             <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
             {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
             {!isEmpty(data) && <Main data={data} />}
