@@ -1,10 +1,10 @@
-@import "../sassStyles/global-imports.scss";
-@import "../sassStyles/theme.scss";
+@import "../../sassStyles/global-imports.scss";
+@import "../../sassStyles/theme.scss";
 
 // bg img
 .bg-img {
   height: 100vh;
-  background: url(../../public/sky.jpg) no-repeat;
+  background: url(../../../public/sky.jpg) no-repeat;
   background-size: 100% 100%;
   background-position-x: center;
 }
