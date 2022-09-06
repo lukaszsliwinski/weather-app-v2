@@ -18,7 +18,8 @@ import Next24HoursForecast from '../HourlyForecast/Next24HoursForecast/Next24Hou
 import DailyForecast from '../DailyForecast/DailyForecast';
 
 // import scss
-import "./App.scss"; 
+import "../sassStyles/classes.scss";
+import "./app.scss";
 
 // add font awesome icons to library
 library.add(fas, far);
@@ -40,14 +41,17 @@ function App() {
 
 
     return (
-        <Container fluid="sm" className="my-4 border rounded mw-800p pt-3 px-5">
-            <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
-            {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
-            {!isEmpty(data) && <Main data={data} />}
-            {!isEmpty(data) && <WeatherConditions data={data}/>}
-            {!isEmpty(data) && <Next24HoursForecast forecast24={data.forecast24}/>}
-            {!isEmpty(data) && <DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/>}
-        </Container>
+        <div className="py-4 bg-img">
+            <Container fluid="sm" className="shadow rounded mw-800p pt-3 px-5 bg-app main-color">
+                <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
+                {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
+                {!isEmpty(data) && <Main data={data} />}
+                {!isEmpty(data) && <WeatherConditions data={data}/>}
+                {!isEmpty(data) && <Next24HoursForecast forecast24={data.forecast24}/>}
+                {!isEmpty(data) && <DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/>}
+            </Container>
+        </div>
+
     );
 };
 

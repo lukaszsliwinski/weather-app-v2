@@ -1,0 +1,60 @@
+@import "./theme.scss";
+
+
+// Custom font sizes
+.fs-070 {
+    font-size: .7rem;
+  }
+  
+  .fs-080 {
+    font-size: .8rem;
+  }
+  
+  .fs-085 {
+    font-size: .85rem;
+  }
+  
+  .fs-090 {
+    font-size: .9rem;
+  }
+  
+  .fs-115 {
+    font-size: 1.15rem;
+  }
+  
+  
+  // Custom width
+  .w-10 {
+    width: 10%;
+  }
+  
+  .w-120 {
+    width: 120%;
+  }
+  
+  .mw-800p {
+      max-width: 800px;
+  }
+  
+  
+  // Frame header
+  .frame-header {
+      display: block;
+      transform: translateY(.6rem);
+      margin-left: .75rem;
+      width: fit-content;
+      padding: 0 .25rem;
+      background-color: transparent;
+      font-size: .7rem;
+      font-weight: bold;
+  }
+
+.btn-hover {
+    &:hover {
+        color: $hover-color;
+    }
+    &:focus {
+        box-shadow: none;
+        color: $hover-color;
+    }
+}

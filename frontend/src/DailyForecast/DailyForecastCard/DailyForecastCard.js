@@ -27,9 +27,8 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
                     <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth />
                     &nbsp;{min}°C
                 </div>
-                <Button variant="outline-dark" size="sm" className="mt-2"
-                    onClick={() => setModalShow(true)}>
-                    hourly
+                <Button className="btn-link btn-hover mt-2 border-0 bg-transparent fw-semibold main-color"
+                    size="sm" onClick={() => setModalShow(true)}>hourly
                 </Button>
             </div>
             <HourlyForecastModal

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ConditionItem({ title, icon, data, unit }) {
     return (
-        <Card className="mb-1 border-0">
+        <Card className="mb-1 border-0 bg-transparent">
             <Card.Body className="p-0 text-center">
                 <Card.Title className="mb-1">
                     <span className="border-bottom fs-085"><FontAwesomeIcon icon={icon} size="xs" fixedWidth />&nbsp;{title}</span></Card.Title>

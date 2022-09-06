@@ -1,19 +1,23 @@
-@import "../../node_modules/bootstrap/scss/functions";
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/mixins/box-shadow";
-@import "../../node_modules/bootstrap/scss/mixins/transition";
+@import "../sassStyles/global-imports";
+@import "../sassStyles/theme.scss";
 
 
 // Overwrite search input style
 
 $input-box-shadow: none;
 $input-focus-box-shadow: none;
-$input-focus-border-color: $secondary;   // change when colors will be chosen
 
 .form-control {
+  color: $main-color;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid $main-color;
+  @include border-radius(0, 0);
   @include box-shadow($input-box-shadow);
   &:focus {
-    border-color: $input-focus-border-color;
+    color: $main-color;
+    background-color: transparent;
+    border-bottom: 1px solid $main-color;
     @if $enable-shadows {
       @include box-shadow($input-box-shadow, $input-focus-box-shadow);
     } @else {
@@ -21,18 +25,18 @@ $input-focus-border-color: $secondary;   // change when colors will be chosen
       box-shadow: $input-focus-box-shadow;
     }
   }
+  &::placeholder {
+    color: $main-color;
+  }
 }
 
-
-$input-placeholder-color1: $secondary;   // change when colors will be chosen
-$input-placeholder-color2: $secondary;
 
 $form-floating-transition: color .3s ease-in-out, transform .3s ease;
 $form-floating-label-transform: scale(.65) translateY(-.7rem) translateX(.4rem);
 
 .form-floating {
   > label {
-    color: $input-placeholder-color1;
+    color: $main-color;
     @include transition($form-floating-transition);
   }
 
@@ -41,7 +45,7 @@ $form-floating-label-transform: scale(.65) translateY(-.7rem) translateX(.4rem);
   > .form-control-plaintext,
   > .form-select {
     ~ label {
-      color: $input-placeholder-color2;
+      color: $main-color;
       opacity: 1;
       transform: $form-floating-label-transform;
     }
@@ -49,7 +53,7 @@ $form-floating-label-transform: scale(.65) translateY(-.7rem) translateX(.4rem);
   // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
   > .form-control:-webkit-autofill {
     ~ label {
-      color: $input-placeholder-color2;
+      color: $main-color;
       opacity: 1;
       transform: $form-floating-label-transform;
     }

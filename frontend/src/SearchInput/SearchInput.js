@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // import scss
-import "./SearchInput.scss"; 
+import "./searchInput.scss"; 
 
 
 function SearchInput({ query, setQuery, setData, setShow }) {
@@ -37,8 +37,8 @@ function SearchInput({ query, setQuery, setData, setShow }) {
         <Row>
             <Col md={{ span: 6, offset: 3 }}>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group role="form" className="flex-row mb-3 text-secondary">
-                        <FloatingLabel label="Enter a city">
+                    <Form.Group role="form" className="d-flex">
+                        <FloatingLabel label="Enter a city" className="d-inline-block">
                             <Form.Control
                                 ref={searchInput}
                                 size="sm"
@@ -48,11 +48,11 @@ function SearchInput({ query, setQuery, setData, setShow }) {
                                 onMouseEnter={() => setFocus(true)}
                                 onMouseLeave={() => setFocus(false)}
                                 required
-                                className="mb-2 fs-5"
+                                className="mb-3 fs-5"
                             />
                         </FloatingLabel>
-                        <Button variant="outline-dark" type="submit" className="w-100 fw-bold">
-                            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> Search
+                        <Button type="submit" className="btn-hover d-inline-block border-0 fs-3 bg-transparent main-color">
+                            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
                         </Button>
                     </Form.Group>
                 </Form>
