@@ -20,19 +20,20 @@ function AlertModal({ setShow, show, query }) {
 
     return (
         <Modal
+            className="main-color"
             id="alertModal"
             show={show}
             onHide={handleClose}
             backdrop="static"
         >
-            <Modal.Header closeButton>
+            <Modal.Header className="bg-modal" closeButton>
                 <Modal.Title>
                     <FontAwesomeIcon icon="fa-solid fa-triangle-exclamation" />&nbsp;
                     '{query}' not found!
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Footer className="border-0">
-                <Button ref={btn} variant="outline-danger" onClick={handleClose}>
+            <Modal.Footer className="border-0 bg-modal">
+                <Button ref={btn} variant="danger" onClick={handleClose}>
                     Close and try again!
                 </Button>
             </Modal.Footer>

@@ -42,6 +42,10 @@
   background-color: rgba($bg-color, $bg-opacity);
 }
 
+.bg-modal {
+  background-color: $bg-modal;
+}
+
 .main-color {
   color: $main-color;
 }
