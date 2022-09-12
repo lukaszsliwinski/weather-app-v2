@@ -1,14 +1,41 @@
 @import "../../sassStyles/global-imports.scss";
 @import "../../sassStyles/theme.scss";
 
-// bg img
-.bg-img {
+// backgrounds
+.bg-clear {
   height: 100vh;
-  background: url(../../../public/sky.jpg) no-repeat;
+  background: url(../../../public/clear.jpg) no-repeat;
   background-size: 100% 100%;
   background-position-x: center;
 }
 
+.bg-clouds {
+  height: 100vh;
+  background: url(../../../public/clouds.jpg) no-repeat;
+  background-size: 100% 100%;
+  background-position-x: center;
+}
+
+.bg-rain {
+  height: 100vh;
+  background: url(../../../public/rain.jpg) no-repeat;
+  background-size: 100% 100%;
+  background-position-x: center;
+}
+
+.bg-snow {
+  height: 100vh;
+  background: url(../../../public/snow.jpg) no-repeat;
+  background-size: 100% 100%;
+  background-position-x: center;
+}
+
+.bg-mist {
+  height: 100vh;
+  background: url(../../../public/mist.jpg) no-repeat;
+  background-size: 100% 100%;
+  background-position-x: center;
+}
 
 
 .bg-app {

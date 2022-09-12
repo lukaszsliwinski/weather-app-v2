@@ -175,6 +175,7 @@ weather = (req, res) => {
                 weather: {
                     description: `${weather.weather[0].description}`,
                     icon: `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`,
+                    iconCode: `${weather.weather[0].icon}`,
                     temp: `${Math.round(weather.main.temp)}`,
                     sensed: `${Math.round(weather.main.feels_like)}`,
                     min: `${Math.round(weather.main.temp_min)}`,

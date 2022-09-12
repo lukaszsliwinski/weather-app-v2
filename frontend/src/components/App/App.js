@@ -31,6 +31,7 @@ function App() {
     const [query, setQuery] = useState('');
     const [data, setData] = useState({});
     const [show, setShow] = useState(false);
+    const [background, setBackground] = useState('bg-clear');
 
     // check if state obj is empty
     const isEmpty = (obj) => {
@@ -43,10 +44,10 @@ function App() {
 
 
     return (
-        <div className="py-4 bg-img">
+        <div className={`py-4 ${background}`}>
             <Container fluid="sm" className="shadow rounded mw-xr p-5 pt-2 bg-app main-color">
                 {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
-                <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
+                <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow} setBackground={setBackground}/>
                 {!isEmpty(data) && <>
                     <Row>
                         <Col><Main data={data} /></Col>

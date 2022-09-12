@@ -16,11 +16,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./searchInput.scss"; 
 
 
-function SearchInput({ query, setQuery, setData, setShow }) {
+function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
     const searchInput = useRef();
 
     // focus search input on hover
     const setFocus = (focus) => focus ? searchInput.current.focus() : searchInput.current.blur();
+
+    // assing bakcground class name to weather icon
+    const bgClasses = {
+        '01d': 'bg-clear',
+        '02d': 'bg-clouds',
+        '03d': 'bg-clouds',
+        '04d': 'bg-clouds',
+        '09d': 'bg-rain',
+        '10d': 'bg-rain',
+        '11d': 'bg-rain',
+        '13d': 'bg-snow',
+        '50d': 'bg-mist',
+        '01n': 'bg-clear',
+        '02n': 'bg-clouds',
+        '03n': 'bg-clouds',
+        '04n': 'bg-clouds',
+        '09n': 'bg-rain',
+        '10n': 'bg-rain',
+        '11n': 'bg-rain',
+        '13n': 'bg-snow',
+        '50n': 'bg-mist'
+    };
 
     // fetch weather data on form submit and handle error
     const handleSubmit = async (e) => {
@@ -34,6 +56,9 @@ function SearchInput({ query, setQuery, setData, setShow }) {
              } else {
                 setData(response.data);
                 setQuery("");
+                setBackground(bgClasses[response.data.weather.iconCode]);
+                // console.log(bgClasses[response.data.weather.iconCode]);
+                // response.data.weather.icon
              };
         };
     };
