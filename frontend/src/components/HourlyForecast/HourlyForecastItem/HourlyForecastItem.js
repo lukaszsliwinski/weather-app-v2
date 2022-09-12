@@ -11,7 +11,7 @@ function HourlyForecastItem({ time, icon, temp }) {
             <div className="fw-semibold fs-080">{time}</div>
             <div>
                 <Image src={icon} className="w-100" alt="Weather icon" />
-                <div className="fw-semibold fs-115">
+                <div className="fw-semibold">
                     <FontAwesomeIcon icon="fa-solid fa-temperature-half" size="xs" fixedWidth />
                     {temp}°C
                 </div>

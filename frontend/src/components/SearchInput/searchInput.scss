@@ -32,10 +32,11 @@ $input-focus-box-shadow: none;
 
 
 $form-floating-transition: color .3s ease-in-out, transform .3s ease;
-$form-floating-label-transform: scale(.65) translateY(-.7rem) translateX(.4rem);
+$form-floating-label-transform: scale(.65) translateY(-1.2rem) translateX(.4rem);
 
 .form-floating {
   > label {
+    top: .5rem;
     color: $main-color;
     @include transition($form-floating-transition);
   }

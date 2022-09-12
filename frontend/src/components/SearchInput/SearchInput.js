@@ -29,13 +29,18 @@ function SearchInput({ query, setQuery, setData, setShow }) {
             setShow(true);
         } else {
             const response = await axios.post('/api/weather', { city: query });
-            (response.data.msg === 'error') ? setShow(true) : setData(response.data);
+            if (response.data.msg === 'error') {
+                setShow(true);
+             } else {
+                setData(response.data);
+                setQuery("");
+             };
         };
     };
 
     return (
         <Row>
-            <Col md={{ span: 6, offset: 3 }}>
+            <Col md={4}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group role="form" className="d-flex">
                         <FloatingLabel label="Enter a city" className="d-inline-block">
@@ -56,6 +61,9 @@ function SearchInput({ query, setQuery, setData, setShow }) {
                         </Button>
                     </Form.Group>
                 </Form>
+            </Col>
+            <Col md={{ span: 4, offset: 4 }} className="d-flex justify-content-end">
+                <h1 className="mt-3">Weather App 2.0</h1>
             </Col>
         </Row>
     );

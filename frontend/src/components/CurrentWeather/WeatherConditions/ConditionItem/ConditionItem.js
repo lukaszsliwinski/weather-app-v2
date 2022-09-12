@@ -8,11 +8,10 @@ function ConditionItem({ title, icon, data, unit }) {
     return (
         <Card className="mb-1 border-0 bg-transparent">
             <Card.Body className="p-0 text-center">
-                <Card.Title className="mb-1">
-                    <span className="border-bottom fs-085"><FontAwesomeIcon icon={icon} size="xs" fixedWidth />&nbsp;{title}</span></Card.Title>
-                <Card.Text className="fs-5 fw-semibold">
-                    {data}{unit}
+                <Card.Text className="mb-0 fw-semibold fs-6">
+                    <FontAwesomeIcon icon={icon} size="xs" fixedWidth />&nbsp;{data}&nbsp;{unit}
                 </Card.Text>
+                <Card.Text className="mb-1 fw-semibold fs-070">{title}</Card.Text>
             </Card.Body>
         </Card>
     );

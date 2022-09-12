@@ -31,7 +31,7 @@ function DailyForecast({ forecast, forecastDetails }) {
     return (
         <>
             <Row className=""><span className="frame-header">daily forecast</span></Row>
-            <Row className="my-2 border rounded p-3">
+            <Row className="m-1 border rounded p-3">
                 {content}
             </Row>     
         </>

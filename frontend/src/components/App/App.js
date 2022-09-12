@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // import react components
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 // import font awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -42,13 +44,19 @@ function App() {
 
     return (
         <div className="py-4 bg-img">
-            <Container fluid="sm" className="shadow rounded mw-800p pt-3 px-5 bg-app main-color">
-                <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
+            <Container fluid="sm" className="shadow rounded mw-xr p-5 pt-2 bg-app main-color">
                 {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
-                {!isEmpty(data) && <Main data={data} />}
-                {!isEmpty(data) && <WeatherConditions data={data}/>}
-                {!isEmpty(data) && <Next24HoursForecast forecast24={data.forecast24}/>}
-                {!isEmpty(data) && <DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/>}
+                <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow}/>
+                {!isEmpty(data) && <>
+                    <Row>
+                        <Col><Main data={data} /></Col>
+                        <Col><DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/></Col>
+                    </Row>
+                    <Row>
+                        <Col><WeatherConditions data={data}/></Col>
+                        <Col><Next24HoursForecast forecast24={data.forecast24}/></Col>
+                    </Row>
+                </>}
             </Container>
         </div>
 

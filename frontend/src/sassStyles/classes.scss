@@ -28,22 +28,24 @@
     width: 10%;
   }
   
-  .w-120 {
-    width: 120%;
+  .w-9r {
+    width: 9rem;
+  }
+
+  // Custom height
+
+  .minh-9r {
+    min-height: 9rem;
   }
   
-  .mw-800p {
-      max-width: 800px;
-  }
-  
+ 
   
   // Frame header
   .frame-header {
       display: block;
-      transform: translateY(.6rem);
+      transform: translateY(.4rem);
       margin-left: .75rem;
       width: fit-content;
-      padding: 0 .25rem;
       background-color: transparent;
       font-size: .7rem;
       font-weight: bold;
