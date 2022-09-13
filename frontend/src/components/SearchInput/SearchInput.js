@@ -57,17 +57,15 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
                 setData(response.data);
                 setQuery("");
                 setBackground(bgClasses[response.data.weather.iconCode]);
-                // console.log(bgClasses[response.data.weather.iconCode]);
-                // response.data.weather.icon
              };
         };
     };
 
     return (
         <Row>
-            <Col md={4}>
+            <Col xs={12} sm={6}>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group role="form" className="d-flex">
+                    <Form.Group role="form" className="d-flex justify-content-center justify-content-sm-start">
                         <FloatingLabel label="Enter a city" className="d-inline-block">
                             <Form.Control
                                 ref={searchInput}
@@ -87,7 +85,7 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
                     </Form.Group>
                 </Form>
             </Col>
-            <Col md={{ span: 4, offset: 4 }} className="d-flex justify-content-end">
+            <Col className="d-none d-sm-flex justify-content-end">
                 <h1 className="mt-3">Weather App 2.0</h1>
             </Col>
         </Row>

@@ -1,6 +1,5 @@
 // import react components
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 // import components
 import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
@@ -22,10 +21,8 @@ function Next24HoursForecast({ forecast24 }) {
     return (
         <>
             <Row className=""><span className="frame-header">next 24 hours</span></Row>
-            <Row className="m-1 border rounded minh-9r p-3">
-                <Col className="d-flex justify-content-between">
-                    {content}
-                </Col>
+            <Row className="d-flex justify-content-between m-1 minh-9r pt-4 pb-3 bg-section">
+                {content}
             </Row>     
         </>
     );

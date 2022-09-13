@@ -25,14 +25,13 @@ function HourlyForecastModal(props) {
 
     return (
         <Modal {...props} size="lg" className="main-color" centered>
-            <Modal.Header className="border-0 pb-0 bg-modal" closeButton>
+            <Modal.Header className="border-0 pb-0 bg-section" closeButton>
                 <Modal.Title className="d-block">
                     <FontAwesomeIcon icon="fa-regular fa-calendar" fixedWidth />&nbsp;
                     {props.date} - {props.day}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className="rounded-bottom pt-0 bg-modal">
-                <Row className=""><span className="frame-header">hourly forecast</span></Row>
+            <Modal.Body className="rounded-bottom pt-0 bg-section">
                 <Row className="my-2 border-top p-1 pt-4">
                     <Col className="d-flex justify-content-between">
                         {content}

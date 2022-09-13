@@ -44,18 +44,18 @@ function App() {
 
 
     return (
-        <div className={`py-4 ${background}`}>
-            <Container fluid="sm" className="shadow rounded mw-xr p-5 pt-2 bg-app main-color">
+        <div className={`pt-xl-4 ${background}`}>
+            <Container fluid="xl" className="shadow-xl rounded-xl mw-xr p-md-5 pt-md-2 pb-2 bg-app main-color">
                 {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
                 <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow} setBackground={setBackground}/>
                 {!isEmpty(data) && <>
                     <Row>
-                        <Col><Main data={data} /></Col>
-                        <Col><DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/></Col>
+                        <Col sm={12} xl={6}><Main data={data} /></Col>
+                        <Col sm={12} xl={6}><DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/></Col>
                     </Row>
                     <Row>
-                        <Col><WeatherConditions data={data}/></Col>
-                        <Col><Next24HoursForecast forecast24={data.forecast24}/></Col>
+                        <Col sm={12} xl={6}><WeatherConditions data={data}/></Col>
+                        <Col sm={12} xl={6}><Next24HoursForecast forecast24={data.forecast24}/></Col>
                     </Row>
                 </>}
             </Container>

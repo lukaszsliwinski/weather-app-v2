@@ -32,18 +32,40 @@
     width: 9rem;
   }
 
+  .mw-4r {
+    max-width: 4rem;
+  }
+
   // Custom height
 
   .minh-9r {
     min-height: 9rem;
   }
   
+// Shadow with breakpoint
+
+.shadow-xl {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  @media (max-width: 1199px) {
+    box-shadow: none;
+  }
+}
+
+
+  // Rounded with breakpoint
+
+.rounded-xl {
+  border-radius: .375rem;
+    @media (max-width: 1199px) {
+      border-radius: 0;
+    }
+  }
  
   
   // Frame header
   .frame-header {
       display: block;
-      transform: translateY(.4rem);
+      transform: translateY(1.5rem);
       margin-left: .75rem;
       width: fit-content;
       background-color: transparent;

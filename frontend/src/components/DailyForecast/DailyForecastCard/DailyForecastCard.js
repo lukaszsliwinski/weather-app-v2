@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 // import react components
+import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 
@@ -15,7 +16,7 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
     const [modalShow, setModalShow] = useState(false);
     
     return (
-        <>
+        <Col xs={true} sm={3}>
             <div className="text-center">
                 <div className="fw-semibold">{day}</div>
                 <Image src={icon} alt="Weather icon" />
@@ -41,7 +42,7 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
                 onHide={() => setModalShow(false)}
             />
 
-        </>
+        </Col>
 
     );
 };

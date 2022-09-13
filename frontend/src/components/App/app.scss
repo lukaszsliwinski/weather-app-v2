@@ -18,7 +18,7 @@
 
 .bg-rain {
   height: 100vh;
-  background: url(../../../public/rain.jpg) no-repeat;
+  background: url(../../../public/rain.jpg) repeat-y;
   background-size: 100% 100%;
   background-position-x: center;
 }
@@ -38,12 +38,31 @@
 }
 
 
-.bg-app {
-  background-color: rgba($bg-color, $bg-opacity);
+.bg-clear,
+.bg-clouds,
+.bg-rain,
+.bg-snow,
+.bg-mist {
+  @media (max-width: 1199px) {
+    background: none;
+    background-color: $bg-color;
+  }
 }
 
-.bg-modal {
-  background-color: $bg-modal;
+
+.bg-app {
+  background-color: rgba($bg-color, $bg-opacity);
+  @media (max-width: 1199px) {
+    background-color: $bg-color;
+  }
+}
+
+.bg-section {
+  background-color: $bg-section;
+}
+
+.bg-alert {
+  background-color: $bg-alert;
 }
 
 .main-color {
