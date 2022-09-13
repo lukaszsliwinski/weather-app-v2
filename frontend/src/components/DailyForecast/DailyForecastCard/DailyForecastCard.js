@@ -16,7 +16,7 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
     const [modalShow, setModalShow] = useState(false);
     
     return (
-        <Col xs={true} sm={3}>
+        <Col xs={6} sm={3}>
             <div className="text-center">
                 <div className="fw-semibold">{day}</div>
                 <Image src={icon} alt="Weather icon" />
