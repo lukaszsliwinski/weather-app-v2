@@ -62,7 +62,7 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
     };
 
     return (
-        <Row>
+        <Row data-testid="search-input">
             <Col xs={12} sm={6}>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group role="form" className="d-flex justify-content-center justify-content-sm-start">
@@ -77,6 +77,7 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
                                 onMouseLeave={() => setFocus(false)}
                                 required
                                 className="mb-3 fs-5"
+                                data-testid="form-control"
                             />
                         </FloatingLabel>
                         <Button type="submit" className="btn-hover d-inline-block border-0 fs-3 bg-transparent main-color">
