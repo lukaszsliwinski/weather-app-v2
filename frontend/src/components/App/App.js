@@ -20,8 +20,8 @@ import Next24HoursForecast from '../HourlyForecast/Next24HoursForecast/Next24Hou
 import DailyForecast from '../DailyForecast/DailyForecast';
 
 // import scss
-import "../../sassStyles/classes.scss";
-import "./app.scss";
+import '../../sassStyles/classes.scss';
+import './app.scss';
 
 // add font awesome icons to library
 library.add(fas, far);

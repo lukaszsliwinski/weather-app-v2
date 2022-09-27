@@ -5,10 +5,10 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 // import font awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // import scss
-import "./AlertModal.scss"; 
+import './AlertModal.scss';
 
 
 function AlertModal({ setShow, show, query }) {

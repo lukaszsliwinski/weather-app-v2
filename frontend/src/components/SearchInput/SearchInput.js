@@ -10,10 +10,10 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 
 // import font awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // import scss
-import "./searchInput.scss"; 
+import './searchInput.scss';
 
 
 function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
@@ -55,7 +55,7 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
                 setShow(true);
              } else {
                 setData(response.data);
-                setQuery("");
+                setQuery('');
                 setBackground(bgClasses[response.data.weather.iconCode]);
              };
         };
