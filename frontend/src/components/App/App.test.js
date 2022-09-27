@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 import App from './App';
