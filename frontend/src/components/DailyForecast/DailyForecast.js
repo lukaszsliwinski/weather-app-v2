@@ -27,7 +27,7 @@ function DailyForecast({ forecast, forecastDetails }) {
 
     return (
         <>
-            <Row><span className="frame-header">daily forecast</span></Row>
+            <Row className="translate-y-150 mx-3 fs-070 fw-bold">daily forecast</Row>
             <Row className="m-1 pt-4 pb-3 bg-section">
                 {content}
             </Row>     
