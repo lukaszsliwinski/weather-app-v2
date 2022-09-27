@@ -8,19 +8,19 @@ import App from './App';
 let container;
 
 beforeEach(() => {
-  container = document.createElement('div');
-  document.body.appendChild(container);
+    container = document.createElement('div');
+    document.body.appendChild(container);
 });
 
 afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
+  	document.body.removeChild(container);
+  	container = null;
 });
 
 
 it('render search input component when app runs', () => {
     act(() => {
-      ReactDOM.createRoot(container).render(<App />);
+      	ReactDOM.createRoot(container).render(<App />);
     });
 
     const searchInput = screen.getByTestId('search-input');
@@ -30,15 +30,15 @@ it('render search input component when app runs', () => {
 
 
 it('focus input on hover', () => {
-  act(() => {
-    ReactDOM.createRoot(container).render(<App />);
-  });
+  	act(() => {
+   		ReactDOM.createRoot(container).render(<App />);
+  	});
 
-  const formControl = screen.getByTestId('form-control');
+  	const formControl = screen.getByTestId('form-control');
 
-  fireEvent.mouseOver(formControl);
-  expect(formControl).toHaveFocus();
+  	fireEvent.mouseOver(formControl);
+  	expect(formControl).toHaveFocus();
   
-  fireEvent.mouseLeave(formControl);
-  expect(formControl).not.toHaveFocus();
+  	fireEvent.mouseLeave(formControl);
+  	expect(formControl).not.toHaveFocus();
 });
