@@ -1,6 +1,7 @@
 @import "../../sassStyles/global-imports.scss";
 @import "../../sassStyles/theme.scss";
 
+
 // backgrounds
 .bg-clear {
   	height: 100vh;
@@ -37,7 +38,6 @@
   	background-position-x: center;
 }
 
-
 .bg-clear,
 .bg-clouds,
 .bg-rain,
@@ -48,7 +48,6 @@
     	background-color: $bg-color;
   	}
 }
-
 
 .bg-app {
   	background-color: rgba($bg-color, $bg-opacity);

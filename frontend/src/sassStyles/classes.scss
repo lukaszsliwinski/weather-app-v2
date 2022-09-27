@@ -36,14 +36,14 @@
     max-width: 4rem;
 }
 
-// Custom height
 
+// Custom height
 .minh-10r {
     min-height: 10rem;
 }
-  
-// Shadow with breakpoint
 
+
+// Shadow with breakpoint
 .shadow-xl {
   	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
   	@media (max-width: 1199px) {
@@ -53,7 +53,6 @@
 
 
 // Rounded with breakpoint
-
 .rounded-xl {
   	border-radius: .375rem;
     @media (max-width: 1199px) {
@@ -67,6 +66,8 @@
       transform: translateY(1.5rem);
 }
 
+
+// Button hover
 .btn-hover {
     &:hover {
         color: $hover-color;
