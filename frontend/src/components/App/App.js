@@ -20,6 +20,7 @@ import Next24HoursForecast from '../HourlyForecast/Next24HoursForecast/Next24Hou
 import DailyForecast from '../DailyForecast/DailyForecast';
 
 // import scss
+import '../../sassStyles/_global.scss';
 import '../../sassStyles/_utilities.scss';
 import './app.scss';
 
