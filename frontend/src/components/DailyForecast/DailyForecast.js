@@ -11,7 +11,8 @@ function DailyForecast({ forecast, forecastDetails }) {
     // List with forecast cards for each day
     for (let i=0; i<4; i++) {
         content.push(
-            <DailyForecastCard 
+            <DailyForecastCard
+                key={i}
                 day={forecast.nextDays[i]}
                 icon={forecast.dailyIcons[i]}
                 max={forecast.maxTemp[i]}

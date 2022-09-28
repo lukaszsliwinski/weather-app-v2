@@ -35,9 +35,9 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
             <HourlyForecastModal
                 day={day}
                 date={modalDate}
-                modalHours={modalHours}
-                modalIcons={modalIcons}
-                modalTemp={modalTemp}
+                modalhours={modalHours}
+                modalicons={modalIcons}
+                modaltemp={modalTemp}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
             />

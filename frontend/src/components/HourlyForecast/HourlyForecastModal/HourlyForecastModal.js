@@ -15,10 +15,11 @@ function HourlyForecastModal(props) {
     // List with forecast cards for each day
     for (let i=0; i<8; i++) {
         content.push(
-            <HourlyForecastItem 
-                time={props.modalHours[i]}
-                icon={props.modalIcons[i]}
-                temp={props.modalTemp[i]}
+            <HourlyForecastItem
+                key={i}
+                time={props.modalhours[i]}
+                icon={props.modalicons[i]}
+                temp={props.modaltemp[i]}
             />
         );
     };

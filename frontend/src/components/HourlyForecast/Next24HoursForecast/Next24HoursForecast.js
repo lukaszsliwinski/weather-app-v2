@@ -10,7 +10,8 @@ function Next24HoursForecast({ forecast24 }) {
     // List with forecast cards for each day
     for (let i=0; i<8; i++) {
         content.push(
-            <HourlyForecastItem 
+            <HourlyForecastItem
+                key={i}
                 time={forecast24.time24[i]}
                 icon={forecast24.icons24[i]}
                 temp={forecast24.temp24[i]}
