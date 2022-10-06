@@ -1,7 +1,10 @@
-# Weather app
+# Weather app 2.0
 
 ## About
 Weather application for checking current conditions and forecast in chosen city. Weather data are taken from openweathermap.org.
+
+This app is an improved version of my first weather app:
+https://github.com/lukaszsliwinski/weather_app
 
 ## Demo
 https://weatherapp.lukaszsliwinski.pl/
