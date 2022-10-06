@@ -11,7 +11,7 @@ https://weatherapp.lukaszsliwinski.pl/
 
 ## Used technologies
 Backend - Node / Express<br>
-Frontend - React / Bootstrap<br>
+Frontend - React / Bootstrap / Sass<br>
 
 ## Setup and run develop version on localhost (Windows)
 1 Install Node.js v.16 from website:<br>
