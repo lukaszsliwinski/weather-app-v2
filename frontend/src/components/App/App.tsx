@@ -24,32 +24,24 @@ import '../../sassStyles/_global.scss';
 import '../../sassStyles/_utilities.scss';
 import './app.scss';
 
+import { IDataObject } from '../../types';
+
 // add font awesome icons to library
 library.add(fas, far);
 
 
 function App() {
     const [query, setQuery] = useState('');
-    const [data, setData] = useState({});
+    const [data, setData] = useState<IDataObject>();
     const [show, setShow] = useState(false);
     const [background, setBackground] = useState('bg-clear');
-
-    // check if state obj is empty
-    const isEmpty = (obj) => {
-        if (obj && Object.keys(obj).length === 0 && Object.getPrototypeOf(obj) === Object.prototype) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
 
     return (
         <div className={`pt-xl-4 ${background}`}>
             <Container fluid="xl" className="shadow-xl rounded-xl mw-xr p-md-5 pt-md-2 pb-2 bg-app main-color">
-                {alert && <AlertModal setShow={setShow} show={show} query={query}/>}
+                <AlertModal setShow={setShow} show={show} query={query}/>
                 <SearchInput query={query} setQuery={setQuery} setData={setData} setShow={setShow} setBackground={setBackground}/>
-                {!isEmpty(data) && <>
+                {data && <>
                     <Row>
                         <Col sm={12} xl={6}><Main data={data} /></Col>
                         <Col sm={12} xl={6}><DailyForecast forecast={data.forecast} forecastDetails={data.forecastDetails}/></Col>

@@ -3,9 +3,10 @@ import Row from 'react-bootstrap/Row';
 
 // import components
 import DailyForecastCard from './DailyForecastCard/DailyForecastCard';
+import { IForecast, IForecastDetails } from '../../types';
 
 
-function DailyForecast({ forecast, forecastDetails }) {
+function DailyForecast({ forecast, forecastDetails }: {forecast: IForecast, forecastDetails: IForecastDetails}) {
     let content = []
 
     // List with forecast cards for each day

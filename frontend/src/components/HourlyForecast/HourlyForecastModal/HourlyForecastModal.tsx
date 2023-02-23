@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import components
 import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
 
-function HourlyForecastModal(props) {
+function HourlyForecastModal(props: any) { // tymczasowo do odpalenia starej wersji z typescript, docelowo bez modala
     let content = []
 
     // List with forecast cards for each day
@@ -28,7 +28,7 @@ function HourlyForecastModal(props) {
         <Modal {...props} size="lg" className="main-color" centered>
             <Modal.Header className="border-0 pb-0 bg-section" closeButton>
                 <Modal.Title className="d-block">
-                    <FontAwesomeIcon icon="fa-regular fa-calendar" fixedWidth />&nbsp;
+                    {/* <FontAwesomeIcon icon="fa-regular fa-calendar" fixedWidth />&nbsp; */}
                     {props.date} - {props.day}
                 </Modal.Title>
             </Modal.Header>

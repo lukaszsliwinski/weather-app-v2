@@ -12,7 +12,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HourlyForecastModal from '../../HourlyForecast/HourlyForecastModal/HourlyForecastModal';
 
 
-function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIcons, modalTemp }) {
+function DailyForecastCard(
+    { day, icon, max, min, modalDate, modalHours, modalIcons, modalTemp }: 
+    { day: string, icon: string, max: string, min: string, modalDate: string, modalHours: string, modalIcons: string, modalTemp: string }) {
     const [modalShow, setModalShow] = useState(false);
     
     return (
@@ -21,11 +23,11 @@ function DailyForecastCard({ day, icon, max, min, modalDate, modalHours, modalIc
                 <div className="fw-semibold">{day}</div>
                 <Image src={icon} alt="Weather icon" />
                 <div className="fw-semibold fs-115">
-                    <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth />
+                    {/* <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-up" size="xs" fixedWidth /> */}
                     &nbsp;{max}°C
                 </div>
                 <div className="fw-semibold fs-115">
-                    <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth />
+                    {/* <FontAwesomeIcon icon="fa-solid fa-temperature-arrow-down" size="xs" fixedWidth /> */}
                     &nbsp;{min}°C
                 </div>
                 <Button className="btn-link btn-hover mt-2 border-0 bg-transparent fw-semibold main-color"

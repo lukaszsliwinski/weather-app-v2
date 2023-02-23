@@ -6,8 +6,10 @@ import Image from 'react-bootstrap/Image';
 // import font awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { IDataObject } from '../../../types';
 
-function Main({ data }) {
+
+function Main({ data }: {data: IDataObject}) {
     return (
         <Row className="h-100 px-1">
             <Col>
@@ -18,9 +20,9 @@ function Main({ data }) {
                         <span className="fs-090">{data.weather.description}</span>
                     </div>
                     <div>
-                        <FontAwesomeIcon icon="fa-regular fa-calendar" fixedWidth /><span>&nbsp;{data.today}</span>
+                        {/* <FontAwesomeIcon icon="fa-regular fa-calendar" fixedWidth /><span>&nbsp;{data.today}</span> */}
                         <br></br>
-                        <FontAwesomeIcon icon="fa-regular fa-clock" fixedWidth /><span>&nbsp;{data.now}</span>
+                        {/* <FontAwesomeIcon icon="fa-regular fa-clock" fixedWidth /><span>&nbsp;{data.now}</span> */}
                     </div>
                 </div>
 

@@ -14,16 +14,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // import scss
 import './searchInput.scss';
+import { IDataObject } from '../../types';
 
 
-function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
+function SearchInput(
+    { query, setQuery, setData, setShow, setBackground }: 
+    { query: string, setQuery: (query: string) => void, setData: (data: IDataObject) => void, setShow: (show: boolean) => void, setBackground: (background: string) => void }) {
     const searchInput = useRef();
 
     // focus search input on hover
-    const setFocus = (focus) => focus ? searchInput.current.focus() : searchInput.current.blur();
+    // const setFocus = (focus) => focus ? searchInput.current.focus() : searchInput.current.blur();
 
     // assing bakcground class name to weather icon
-    const bgClasses = {
+    const bgClasses: {[key: string]: string} = {
         '01d': 'bg-clear',
         '02d': 'bg-clouds',
         '03d': 'bg-clouds',
@@ -45,8 +48,8 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
     };
 
     // fetch weather data on form submit and handle error
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         if (typeof query !== 'string') {
             setShow(true);
         } else {
@@ -64,24 +67,24 @@ function SearchInput({ query, setQuery, setData, setShow, setBackground }) {
     return (
         <Row data-testid="search-input">
             <Col xs={12} sm={6}>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={(event) => handleSubmit(event)}>
                     <Form.Group role="form" className="d-flex justify-content-center justify-content-sm-start">
                         <FloatingLabel label="Enter a city" className="d-inline-block">
                             <Form.Control
-                                ref={searchInput}
+                                // ref={searchInput}
                                 size="sm"
                                 placeholder="Enter a city"
                                 value={query}
                                 onChange={e => setQuery(e.target.value)}
-                                onMouseEnter={() => setFocus(true)}
-                                onMouseLeave={() => setFocus(false)}
+                                // onMouseEnter={() => setFocus(true)}
+                                // onMouseLeave={() => setFocus(false)}
                                 required
                                 className="mb-3 fs-5"
                                 data-testid="form-control"
                             />
                         </FloatingLabel>
                         <Button type="submit" className="btn-hover d-inline-block border-0 fs-3 bg-transparent main-color">
-                            <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+                            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
                         </Button>
                     </Form.Group>
                 </Form>
