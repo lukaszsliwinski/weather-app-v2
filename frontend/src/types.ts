@@ -14,24 +14,17 @@ export interface IWeather {
     humidity: string
 }
 
-export interface IForecast {
+export interface IHourlyForecast {
+    time: string,
+    icons: string,
+    temp: string
+}
+
+export interface IDailyForecast {
     nextDays: string,
-    nextDates: string,
     dailyIcons: string,
     maxTemp: string,
     minTemp: string
-}
-
-export interface IForecastDetails {
-    hours: string,
-    temp: string,
-    icons: string
-}
-
-export interface IForecast24 {
-    time24: string,
-    icons24: string,
-    temp24: string
 }
 
 export interface IDataObject {
@@ -39,7 +32,6 @@ export interface IDataObject {
     today: string,
     now: string,
     weather: IWeather,
-    forecast: IForecast,
-    forecastDetails: IForecastDetails,
-    forecast24: IForecast24
+    hourlyForecast: IHourlyForecast,
+    dailyForecast: IDailyForecast
 }

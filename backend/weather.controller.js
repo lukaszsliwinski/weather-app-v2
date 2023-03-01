@@ -35,16 +35,16 @@ weather = (req, res) => {
 
             ///// Get forecast for the next 24 hours /////
 
-            let time24 = [];
-            let icons24 = [];
-            let temp24 = [];
+            let time = [];
+            let icons = [];
+            let temp = [];
 
             for (i = 1; i < 8; i+=2) {
                 let dtPlusTimezone = forecast.list[i].dt + forecast.city.timezone;
 
-                time24.push(moment(dtPlusTimezone * 1000).utc(false).format('HH:mm'));
-                icons24.push(`http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`);
-                temp24.push(Math.round(forecast.list[i].main.temp));
+                time.push(moment(dtPlusTimezone * 1000).utc(false).format('HH:mm'));
+                icons.push(`http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`);
+                temp.push(Math.round(forecast.list[i].main.temp));
             };
 
 
@@ -58,12 +58,7 @@ weather = (req, res) => {
             let maxTemp = [];
             let minTemp = [];
             let nextDays = [];
-            let nextDates = [];
             let dailyIcons = [];
-
-            let hours = [];
-            let temp = [];
-            let icons = [];
 
             for (i = 0; i < forecast.list.length; i++) {
                 /*
@@ -78,7 +73,6 @@ weather = (req, res) => {
                     try {
                         // Push name of next day to the list
                         nextDays.push(moment(dtPlusTimezone * 1000).utc(true).format('dddd'));
-                        nextDates.push(moment(dtPlusTimezone * 1000).utc(true).format('DD-MM-YYYY'));
 
 
                         ///// Main daily forecast /////
@@ -138,29 +132,6 @@ weather = (req, res) => {
                         };
 
                         dailyIcons.push(`http://openweathermap.org/img/wn/${result}@2x.png`);
-
-
-                        ///// Hourly forecast /////
-
-                        // Get hours for detailed forecast, only once (hours for every day are the same)
-                        if (hours.length === 0) {
-                            for (j = 0; j < 8; j++) {
-                                hours.push(moment((forecast.list[i+j].dt + forecast.city.timezone) * 1000).utc(false).format('HH:mm'));
-                            };
-                        };
-
-                        // Get temp for every hour
-                        temp.push(tempList);
-
-                        // Get weather icon for every hour
-                        let iconsList = [];
-
-                        for (j = 0; j < 8; j++) {
-                            iconsList.push(`http://openweathermap.org/img/wn/${forecast.list[i+j].weather[0].icon}@2x.png`);
-                        };
-
-                        icons.push(iconsList);
-
                     } catch {
                         break;
                     };
@@ -187,22 +158,16 @@ weather = (req, res) => {
                     pressure: `${Math.round(weather.main.pressure)}`,
                     humidity: `${weather.main.humidity}`
                 },
-                forecast: {
+                hourlyForecast: {
+                    time: time,
+                    icons: icons,
+                    temp: temp
+                },
+                dailyForecast: {
                     nextDays: nextDays,
-                    nextDates: nextDates,
                     dailyIcons: dailyIcons,
                     maxTemp: maxTemp,
                     minTemp: minTemp
-                },
-                forecastDetails: {
-                    hours: hours,
-                    temp: temp,
-                    icons: icons
-                },
-                forecast24: {
-                    time24: time24,
-                    icons24: icons24,
-                    temp24: temp24
                 }
             });
         }))

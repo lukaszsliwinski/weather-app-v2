@@ -4,7 +4,7 @@ const express = require('express');
 const bp = require('body-parser');
 const app = express();
 
-const weather = require('./controllers/weather')
+const weather = require('./weather.controller')
 
 // Dotenv package
 require('dotenv').config();
@@ -28,7 +28,7 @@ app.post('/api/weather', weather);
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
-  
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

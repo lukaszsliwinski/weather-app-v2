@@ -1,21 +1,21 @@
 // import components
-import { IForecast } from './types';
+import { IDailyForecast } from './types';
 
-function DailyForecast({ forecast }: {forecast: IForecast }) {
+function DailyForecast({ dailyForecast }: {dailyForecast: IDailyForecast }) {
     let content = []
 
     // List with forecast cards for each day
     for (let i=0; i<4; i++) {
         content.push(
                 <div className="text-center">
-                    <div>{forecast.nextDays[i]}</div>
-                    <img src={forecast.dailyIcons[i]} alt="Weather icon" />
+                    <div>{dailyForecast.nextDays[i]}</div>
+                    <img src={dailyForecast.dailyIcons[i]} alt="Weather icon" />
                     <div key={i}>
                         <span>
-                            &nbsp;{forecast.maxTemp[i]}°C
+                            &nbsp;{dailyForecast.maxTemp[i]}°C
                         </span> /
                         <span>
-                            {forecast.minTemp[i]}°C
+                            {dailyForecast.minTemp[i]}°C
                         </span>
                     </div>
                 </div>

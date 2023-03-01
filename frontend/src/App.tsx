@@ -4,7 +4,7 @@ import './global.css';
 
 // import components
 import Main from './Main';
-import Next24HoursForecast from './Next24HoursForecast';
+import HourlyForecast from './HourlyForecast';
 import DailyForecast from './DailyForecast';
 
 import { IDataObject } from './types';
@@ -41,11 +41,11 @@ function App() {
                     />
                 </form>
                 {data &&
-                    <div>
+                    <>
                         <Main data={data} />
-                        <Next24HoursForecast forecast24={data.forecast24}/>
-                        <DailyForecast forecast={data.forecast} />
-                    </div>}
+                        <HourlyForecast hourlyForecast={data.hourlyForecast}/>
+                        <DailyForecast dailyForecast={data.dailyForecast} />
+                    </>}
             </div>
         </div>
 
