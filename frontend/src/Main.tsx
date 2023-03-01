@@ -3,24 +3,24 @@ import { IDataObject } from './types';
 function Main({ data }: {data: IDataObject}) {
     return (
         <>
-            <span className="fs-3">{data.place}</span><span>&nbsp;{data.today}</span><span>&nbsp;{data.now}</span>
-            <div className='d-flex'>
+            <span>{data.place}</span><span>&nbsp;{data.today}</span><span>&nbsp;{data.now}</span>
+            <div className='flex'>
                 <div>
-                    <div className="d-flex justify-content-center">
+                    <div className="flex justify-center">
                         <img src={data.weather.icon} alt="Weather icon" />
-                        <div className="d-flex flex-column justify-content-center align-items-center">
-                            <span className="fs-1">
+                        <div className="flex flex-col justify-center items-center">
+                            <span>
                                 {data.weather.temp}°C
                             </span>
-                            <span className="fs-080">
+                            <span>
                                 sensed&nbsp;
-                                <span className="fs-6 fw-semibold">
+                                <span>
                                     {data.weather.sensed}°C
                                 </span>
                             </span>
                         </div>
                     </div>
-                    <span className="fs-090">{data.weather.description}</span>
+                    <span>{data.weather.description}</span>
                 </div>
                 <div>
                     <div>temp {data.weather.max} °C&emsp;temp {data.weather.min} °C</div>

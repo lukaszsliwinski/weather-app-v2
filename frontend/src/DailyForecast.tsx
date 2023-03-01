@@ -8,13 +8,13 @@ function DailyForecast({ forecast }: {forecast: IForecast }) {
     for (let i=0; i<4; i++) {
         content.push(
                 <div className="text-center">
-                    <div className="fw-semibold">{forecast.nextDays[i]}</div>
+                    <div>{forecast.nextDays[i]}</div>
                     <img src={forecast.dailyIcons[i]} alt="Weather icon" />
                     <div key={i}>
-                        <span className="fw-semibold fs-115">
+                        <span>
                             &nbsp;{forecast.maxTemp[i]}°C
                         </span> /
-                        <span className="fw-semibold fs-115">
+                        <span>
                             {forecast.minTemp[i]}°C
                         </span>
                     </div>
@@ -25,7 +25,7 @@ function DailyForecast({ forecast }: {forecast: IForecast }) {
     return (
         <>
             <span>daily forecast</span>
-            <div className='d-flex'>{content}</div>
+            <div className='flex'>{content}</div>
         </>
     );
 };

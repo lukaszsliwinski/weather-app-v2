@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './global.css';
 
 // import components
 import Main from './Main';
 import Next24HoursForecast from './Next24HoursForecast';
 import DailyForecast from './DailyForecast';
-
-import './app.scss';
 
 import { IDataObject } from './types';
 
@@ -32,24 +30,22 @@ function App() {
     };
 
     return (
-        <div className='pt-xl-4 bg-clear'>
-            <div className="shadow-xl border rounded-xl mw-xr p-md-5 pt-md-2 pb-2 bg-app main-color" style={{ width: "35rem" }}>
+        <div className='bg-clear'>
+            <div className="mx-auto w-[35rem] border">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input
                         placeholder="Enter a city"
                         value={query}
                         onChange={e => setQuery(e.target.value)}
                         required
-                        className="mb-3 fs-5"
                     />
                 </form>
-                {data && <>
+                {data &&
                     <div>
                         <Main data={data} />
                         <Next24HoursForecast forecast24={data.forecast24}/>
                         <DailyForecast forecast={data.forecast} />
-                    </div>
-                </>}
+                    </div>}
             </div>
         </div>
 
