@@ -1,9 +1,10 @@
 // import react components
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
 
 // import components
-import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
-import { IForecast24 } from '../../../types';
+import { IForecast24 } from './types';
 
 function Next24HoursForecast({ forecast24 }: { forecast24: IForecast24 }) {
     let content = []
@@ -11,12 +12,15 @@ function Next24HoursForecast({ forecast24 }: { forecast24: IForecast24 }) {
     // List with forecast cards for each day
     for (let i=0; i<4; i++) {
         content.push(
-            <HourlyForecastItem
-                key={i}
-                time={forecast24.time24[i]}
-                icon={forecast24.icons24[i]}
-                temp={forecast24.temp24[i]}
-            />
+            <Col sm={true} xs={3} className="text-center p-1">
+                <div key={i} className="fw-semibold fs-115">{forecast24.time24[i]}</div>
+                <div>
+                    <Image src={forecast24.icons24[i]} alt="Weather icon" />
+                    <div className="fs-115 fw-semibold">
+                        {forecast24.temp24[i]}°C
+                    </div>
+                </div>
+            </Col>
         );
     };
 

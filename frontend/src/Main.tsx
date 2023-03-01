@@ -3,24 +3,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-import { IDataObject } from '../../../types';
+import { IDataObject } from './types';
 
 import Card from 'react-bootstrap/Card';
-
-function ConditionItem({ title, data, unit }: { title: string, data: string, unit: string | undefined }) {
-    return (
-        <Col xs={6} sm={3} lg={true} xl={3} className="d-flex justify-content-center align-items-center">
-            <Card className="mb-1 border-0 bg-transparent">
-                <Card.Body className="p-0 text-center">
-                    <Card.Text className="mb-0 fw-semibold fs-6">
-                        {data}&nbsp;{unit}
-                    </Card.Text>
-                    <Card.Text className="mb-1 fw-semibold fs-070">{title}</Card.Text>
-                </Card.Body>
-            </Card>
-        </Col>
-    );
-};
 
 function Main({ data }: {data: IDataObject}) {
     return (
