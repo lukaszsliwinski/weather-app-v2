@@ -9,43 +9,12 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 
-// import font awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// import scss
-import './searchInput.scss';
 import { IDataObject } from '../../types';
 
 
 function SearchInput(
-    { query, setQuery, setData, setShow, setBackground }: 
-    { query: string, setQuery: (query: string) => void, setData: (data: IDataObject) => void, setShow: (show: boolean) => void, setBackground: (background: string) => void }) {
-    const searchInput = useRef();
-
-    // focus search input on hover
-    // const setFocus = (focus) => focus ? searchInput.current.focus() : searchInput.current.blur();
-
-    // assing bakcground class name to weather icon
-    const bgClasses: {[key: string]: string} = {
-        '01d': 'bg-clear',
-        '02d': 'bg-clouds',
-        '03d': 'bg-clouds',
-        '04d': 'bg-clouds',
-        '09d': 'bg-rain',
-        '10d': 'bg-rain',
-        '11d': 'bg-rain',
-        '13d': 'bg-snow',
-        '50d': 'bg-mist',
-        '01n': 'bg-clear',
-        '02n': 'bg-clouds',
-        '03n': 'bg-clouds',
-        '04n': 'bg-clouds',
-        '09n': 'bg-rain',
-        '10n': 'bg-rain',
-        '11n': 'bg-rain',
-        '13n': 'bg-snow',
-        '50n': 'bg-mist'
-    };
+    { query, setQuery, setData, setShow }:
+    { query: string, setQuery: (query: string) => void, setData: (data: IDataObject) => void, setShow: (show: boolean) => void }) {
 
     // fetch weather data on form submit and handle error
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -59,38 +28,30 @@ function SearchInput(
              } else {
                 setData(response.data);
                 setQuery('');
-                setBackground(bgClasses[response.data.weather.iconCode]);
              };
         };
     };
 
     return (
         <Row data-testid="search-input">
-            <Col xs={12} sm={6}>
+            <Col>
                 <Form onSubmit={(event) => handleSubmit(event)}>
                     <Form.Group role="form" className="d-flex justify-content-center justify-content-sm-start">
                         <FloatingLabel label="Enter a city" className="d-inline-block">
                             <Form.Control
-                                // ref={searchInput}
                                 size="sm"
                                 placeholder="Enter a city"
                                 value={query}
                                 onChange={e => setQuery(e.target.value)}
-                                // onMouseEnter={() => setFocus(true)}
-                                // onMouseLeave={() => setFocus(false)}
                                 required
                                 className="mb-3 fs-5"
                                 data-testid="form-control"
                             />
                         </FloatingLabel>
                         <Button type="submit" className="btn-hover d-inline-block border-0 fs-3 bg-transparent main-color">
-                            {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /> */}
                         </Button>
                     </Form.Group>
                 </Form>
-            </Col>
-            <Col className="d-none d-sm-flex justify-content-end">
-                <h1 className="mt-3">Weather App 2.0</h1>
             </Col>
         </Row>
     );

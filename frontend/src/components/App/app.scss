@@ -1,69 +1,7 @@
-@import "../../sassStyles/_imports.scss";
-@import "../../sassStyles/_variables.scss";
-
-
 // backgrounds
 .bg-clear {
   	height: 100vh;
   	background: url(../../../public/clear.jpg) no-repeat;
   	background-size: 100% 100%;
   	background-position-x: center;
-}
-
-.bg-clouds {
-  	height: 100vh;
-  	background: url(../../../public/clouds.jpg) no-repeat;
-  	background-size: 100% 100%;
-  	background-position-x: center;
-}
-
-.bg-rain {
-  	height: 100vh;
-  	background: url(../../../public/rain.jpg) repeat-y;
-  	background-size: 100% 100%;
-  	background-position-x: center;
-}
-
-.bg-snow {
-  	height: 100vh;
-  	background: url(../../../public/snow.jpg) no-repeat;
-  	background-size: 100% 100%;
-  	background-position-x: center;
-}
-
-.bg-mist {
-  	height: 100vh;
-  	background: url(../../../public/mist.jpg) no-repeat;
-  	background-size: 100% 100%;
-  	background-position-x: center;
-}
-
-.bg-clear,
-.bg-clouds,
-.bg-rain,
-.bg-snow,
-.bg-mist {
-  	@media (max-width: 1199px) {
-    	background: none;
-    	background-color: $bg-color;
-  	}
-}
-
-.bg-app {
-  	background-color: rgba($bg-color, $bg-opacity);
-  	@media (max-width: 1199px) {
-    	background-color: $bg-color;
-  	}
-}
-
-.bg-section {
-  	background-color: $bg-section;
-}
-
-.bg-alert {
-  	background-color: $bg-alert;
-}
-
-.main-color {
-  	color: $main-color;
 }

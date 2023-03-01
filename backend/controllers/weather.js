@@ -27,19 +27,19 @@ weather = (req, res) => {
 
             // Get current timestamp from moment.js with timezone from response
             let nowPlusTimezone = moment().utc(false).unix() + weather.timezone;
-            
+
             // Get current date and time from moment.js to display on main page (it is more accurate than from Openweathermap)
             let currentDate = moment().utc(false).add(weather.timezone, 'seconds').format('DD-MM-YYYY');
             let currentTime = moment().utc(false).add(weather.timezone, 'seconds').format('HH:mm');
 
 
             ///// Get forecast for the next 24 hours /////
-            
+
             let time24 = [];
             let icons24 = [];
             let temp24 = [];
 
-            for (i = 0; i < 8; i++) {
+            for (i = 1; i < 8; i+=2) {
                 let dtPlusTimezone = forecast.list[i].dt + forecast.city.timezone;
 
                 time24.push(moment(dtPlusTimezone * 1000).utc(false).format('HH:mm'));
@@ -115,13 +115,13 @@ weather = (req, res) => {
                         let result;
 
                         if (iconStrList.length === uniq.length) {
-                            // If the icons do not repeat then the representative one 
+                            // If the icons do not repeat then the representative one
                             // is the first one in the list
                             result = iconStrList[0];
                         } else {
-                            // If the icons are repeated then the representative one 
+                            // If the icons are repeated then the representative one
                             // is the one that repeats the most times
-                            
+
                             // Create list with icons and their quantity
                             let counted = [];
                             uniq.forEach(item => {
@@ -158,7 +158,7 @@ weather = (req, res) => {
                         for (j = 0; j < 8; j++) {
                             iconsList.push(`http://openweathermap.org/img/wn/${forecast.list[i+j].weather[0].icon}@2x.png`);
                         };
-                        
+
                         icons.push(iconsList);
 
                     } catch {

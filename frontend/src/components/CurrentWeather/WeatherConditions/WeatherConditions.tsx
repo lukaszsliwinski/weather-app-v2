@@ -2,23 +2,39 @@
 import Row from 'react-bootstrap/Row';
 
 // import components
-import ConditionItem from './ConditionItem/ConditionItem';
 import { IDataObject } from '../../../types';
+
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+
+function ConditionItem({ title, data, unit }: { title: string, data: string, unit: string | undefined }) {
+    return (
+        <Col xs={6} sm={3} lg={true} xl={3} className="d-flex justify-content-center align-items-center">
+            <Card className="mb-1 border-0 bg-transparent">
+                <Card.Body className="p-0 text-center">
+                    <Card.Text className="mb-0 fw-semibold fs-6">
+                        {data}&nbsp;{unit}
+                    </Card.Text>
+                    <Card.Text className="mb-1 fw-semibold fs-070">{title}</Card.Text>
+                </Card.Body>
+            </Card>
+        </Col>
+    );
+};
 
 
 function WeatherConditions({ data }: {data: IDataObject}) {
     return (
         <>
-            <Row className="translate-y-150 mx-3 fs-070 fw-bold">conditions</Row>
-            <Row className="m-1 minh-10r pt-4 pb-3 bg-section">
-                <ConditionItem title="max temp" icon="fa-solid fa-temperature-arrow-up" data={data.weather.max} unit="°C" />
-                <ConditionItem title="min temp" icon="fa-solid fa-temperature-arrow-down" data={data.weather.min} unit="°C" />
-                <ConditionItem title="sunrise" icon="fa-regular fa-sun" data={data.weather.sunrise} unit={undefined} />
-                <ConditionItem title="sunset" icon="fa-regular fa-moon" data={data.weather.sunset} unit={undefined} />
-                <ConditionItem title="wind speed" icon="fa-solid fa-location-arrow" data={data.weather.wind} unit="m/s" />
-                <ConditionItem title="cloudiness" icon="fa-solid fa-cloud" data={data.weather.cloudiness} unit="%" />
-                <ConditionItem title="pressure" icon="fa-solid fa-gauge-simple-high" data={data.weather.pressure} unit="hPa" />
-                <ConditionItem title="humidity" icon="fa-solid fa-water" data={data.weather.humidity} unit="%" />
+            <Row className="">
+                <ConditionItem title="max temp" data={data.weather.max} unit="°C" />
+                <ConditionItem title="min temp" data={data.weather.min} unit="°C" />
+                <ConditionItem title="sunrise" data={data.weather.sunrise} unit={undefined} />
+                <ConditionItem title="sunset" data={data.weather.sunset} unit={undefined} />
+                <ConditionItem title="wind speed" data={data.weather.wind} unit="m/s" />
+                <ConditionItem title="cloudiness" data={data.weather.cloudiness} unit="%" />
+                <ConditionItem title="pressure" data={data.weather.pressure} unit="hPa" />
+                <ConditionItem title="humidity" data={data.weather.humidity} unit="%" />
             </Row>
         </>
     );

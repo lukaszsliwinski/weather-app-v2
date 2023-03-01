@@ -3,12 +3,13 @@ import Row from 'react-bootstrap/Row';
 
 // import components
 import HourlyForecastItem from '../HourlyForecastItem/HourlyForecastItem';
+import { IForecast24 } from '../../../types';
 
-function Next24HoursForecast({ forecast24 }) {
+function Next24HoursForecast({ forecast24 }: { forecast24: IForecast24 }) {
     let content = []
 
     // List with forecast cards for each day
-    for (let i=0; i<8; i++) {
+    for (let i=0; i<4; i++) {
         content.push(
             <HourlyForecastItem
                 key={i}
@@ -24,7 +25,7 @@ function Next24HoursForecast({ forecast24 }) {
             <Row className="translate-y-150 mx-3 fs-070 fw-bold">next 24 hours</Row>
             <Row className="d-flex justify-content-between m-1 minh-10r pt-4 pb-3 bg-section">
                 {content}
-            </Row>     
+            </Row>
         </>
     );
 };
