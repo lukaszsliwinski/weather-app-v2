@@ -3,7 +3,7 @@ import axios from 'axios';
 import './global.css';
 
 // import components
-import Main from './Main';
+import Main from './Weather';
 import HourlyForecast from './HourlyForecast';
 import DailyForecast from './DailyForecast';
 
@@ -30,7 +30,7 @@ function App() {
     };
 
     return (
-        <div className='bg-photo pt-12'>
+        <div className='bg-photo pt-12 font-medium'>
             <div className="mx-auto p-6 w-[30rem] h-[45rem] backdrop-blur-sm bg-white/20 rounded-2xl">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
