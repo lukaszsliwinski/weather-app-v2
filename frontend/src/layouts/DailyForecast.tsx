@@ -1,7 +1,7 @@
-import { ReactComponent as Calendar } from './assets/svg/calendar.svg';
-import { ReactComponent as Temp } from './assets/svg/temp.svg';
+import { ReactComponent as Calendar } from '../assets/svg/calendar.svg';
+import { ReactComponent as Temp } from '../assets/svg/temp.svg';
 
-import { IDailyForecast } from './types';
+import { IDailyForecast } from '../types';
 
 function DailyForecast({ dailyForecast }: {dailyForecast: IDailyForecast }) {
     let content = []

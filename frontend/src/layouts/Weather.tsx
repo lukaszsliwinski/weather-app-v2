@@ -1,13 +1,13 @@
-import { ReactComponent as TempMax } from './assets/svg/tempmax.svg';
-import { ReactComponent as TempMin } from './assets/svg/tempmin.svg';
-import { ReactComponent as Sun } from './assets/svg/sun.svg';
-import { ReactComponent as Arrows } from './assets/svg/arrows.svg';
-import { ReactComponent as Wind } from './assets/svg/wind.svg';
-import { ReactComponent as Cloud } from './assets/svg/cloud.svg';
-import { ReactComponent as Pressure } from './assets/svg/pressure.svg';
-import { ReactComponent as Drop } from './assets/svg/drop.svg';
+import { ReactComponent as TempMax } from '../assets/svg/tempmax.svg';
+import { ReactComponent as TempMin } from '../assets/svg/tempmin.svg';
+import { ReactComponent as Sun } from '../assets/svg/sun.svg';
+import { ReactComponent as Arrows } from '../assets/svg/arrows.svg';
+import { ReactComponent as Wind } from '../assets/svg/wind.svg';
+import { ReactComponent as Cloud } from '../assets/svg/cloud.svg';
+import { ReactComponent as Pressure } from '../assets/svg/pressure.svg';
+import { ReactComponent as Drop } from '../assets/svg/drop.svg';
 
-import { IDataObject } from './types';
+import { IDataObject } from '../types';
 
 function Main({ data }: {data: IDataObject}) {
     return (

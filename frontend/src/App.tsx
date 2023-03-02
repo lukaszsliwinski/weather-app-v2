@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
-import './global.css';
+import './assets/global.css';
 
 // import components
-import Main from './Weather';
-import HourlyForecast from './HourlyForecast';
-import DailyForecast from './DailyForecast';
+import Main from './layouts/Weather';
+import HourlyForecast from './layouts/HourlyForecast';
+import DailyForecast from './layouts/DailyForecast';
 
 import { IDataObject } from './types';
 

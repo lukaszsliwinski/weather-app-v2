@@ -1,7 +1,7 @@
-import { ReactComponent as Clock } from './assets/svg/clock.svg';
-import { ReactComponent as Temp } from './assets/svg/temp.svg';
+import { ReactComponent as Clock } from '../assets/svg/clock.svg';
+import { ReactComponent as Temp } from '../assets/svg/temp.svg';
 
-import { IHourlyForecast } from './types';
+import { IHourlyForecast } from '../types';
 
 function HourlyForecast({ hourlyForecast }: { hourlyForecast: IHourlyForecast }) {
     let content = []
