@@ -30,8 +30,8 @@ function App() {
     };
 
     return (
-        <div className='bg-clear'>
-            <div className="mx-auto w-[35rem] border">
+        <div className='bg-photo pt-12'>
+            <div className="mx-auto w-[30rem] h-[45rem] backdrop-blur-sm bg-white/20 rounded-2xl">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <input
                         placeholder="Enter a city"

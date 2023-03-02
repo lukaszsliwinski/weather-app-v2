@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-clear {
+.bg-photo {
   height: 100vh;
-  background: url(../public/clear.jpg) no-repeat;
+  background: url(../public/background.jpg) no-repeat;
   background-size: 100% 100%;
   background-position-x: center;
 }
