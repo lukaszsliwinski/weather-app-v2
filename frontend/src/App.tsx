@@ -30,7 +30,7 @@ function App() {
     };
 
     return (
-        <div className='bg-photo pt-12 font-medium'>
+        <div className='bg-photo pt-12 font-medium text-sm'>
             <div className="mx-auto p-6 w-[30rem] h-[45rem] backdrop-blur-sm bg-white/20 rounded-2xl">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

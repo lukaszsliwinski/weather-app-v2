@@ -15,16 +15,16 @@ export interface IWeather {
 }
 
 export interface IHourlyForecast {
-    time: string,
-    icons: string,
-    temp: string
+    time: string[],
+    icons: string[],
+    temp: string[]
 }
 
 export interface IDailyForecast {
-    nextDays: string,
-    dailyIcons: string,
-    maxTemp: string,
-    minTemp: string
+    nextDays: string[],
+    dailyIcons: string[],
+    maxTemp: string[],
+    minTemp: string[]
 }
 
 export interface IDataObject {

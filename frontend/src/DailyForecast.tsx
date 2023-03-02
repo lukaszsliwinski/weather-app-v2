@@ -1,4 +1,6 @@
-// import components
+import { ReactComponent as Calendar } from './assets/svg/calendar.svg';
+import { ReactComponent as Temp } from './assets/svg/temp.svg';
+
 import { IDailyForecast } from './types';
 
 function DailyForecast({ dailyForecast }: {dailyForecast: IDailyForecast }) {
@@ -7,26 +9,23 @@ function DailyForecast({ dailyForecast }: {dailyForecast: IDailyForecast }) {
     // List with forecast cards for each day
     for (let i=0; i<4; i++) {
         content.push(
-                <div className="text-center">
-                    <div>{dailyForecast.nextDays[i]}</div>
-                    <img src={dailyForecast.dailyIcons[i]} alt="Weather icon" />
-                    <div key={i}>
-                        <span>
-                            &nbsp;{dailyForecast.maxTemp[i]}°C
-                        </span> /
-                        <span>
-                            {dailyForecast.minTemp[i]}°C
-                        </span>
-                    </div>
+            <div key={i} className="flex flex-col items-center">
+                <div className='flex'>
+                    <Calendar className='mr-1.5 w-3'/>{dailyForecast.nextDays[i]}
                 </div>
+                <img className='w-20' src={dailyForecast.dailyIcons[i]} alt="Weather icon" />
+                <div className='flex'>
+                    <Temp className='mr-1.5 w-2'/>{dailyForecast.maxTemp[i]}°C / {dailyForecast.minTemp[i]}°C
+                </div>
+            </div>
         );
     };
 
     return (
-        <>
-            <span>daily forecast</span>
-            <div className='flex'>{content}</div>
-        </>
+        <div className="mt-8">
+            <h2 className='text-center my-2'>daily forecast</h2>
+            <div className='flex justify-around'>{content}</div>
+        </div>
     );
 };
 

@@ -15,17 +15,16 @@ function Main({ data }: {data: IDataObject}) {
             <div className='flex justify-between'>
                 <div>
                     <h1 className='text-3xl'>{data.place}</h1>
-                    <span className='font-normal'>{data.weather.description}</span>
+                    <span className='font-normal text-base'>{data.weather.description}</span>
                 </div>
                 <div className='flex flex-col items-end'>
-                    <span>{data.today} {data.now}</span>
+                    <span className='text-base'>{data.today} {data.now}</span>
                     <div className='flex font-normal text-sm mt-1'>
                         <Sun className='mr-0.5 w-3.5'/><Arrows className='mt-1 mr-2 h-3'/>{data.weather.sunrise} - {data.weather.sunset}
                     </div>
                 </div>
             </div>
-            {/* <div className='flex justify-between items-center my-8'> */}
-            <div className='grid grid-cols-3 my-8'>
+            <div className='grid grid-cols-3 mt-8'>
                 <div className="col-span-2 flex justify-center">
                     <img className='w-32' src={data.weather.icon} alt="Weather icon" />
                     <div className="flex flex-col justify-center items-center">
