@@ -6,7 +6,7 @@ import { IHourlyForecast } from '../types';
 function HourlyForecast({ hourlyForecast }: { hourlyForecast: IHourlyForecast }) {
     let content = []
 
-    // List with forecast cards for each day
+    // List with forecast cards for hours
     for (let i=0; i<4; i++) {
         content.push(
             <div key={i} className="flex flex-col items-center">

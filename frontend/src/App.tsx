@@ -2,7 +2,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import './assets/global.css';
 
-// import components
 import Alert from './components/Alert';
 import About from './components/About';
 import Main from './layouts/Weather';
@@ -12,6 +11,7 @@ import DailyForecast from './layouts/DailyForecast';
 import { IDataObject } from './types';
 
 function App() {
+    // local state
     const [alertVisible, setAlertVisible] = useState(false);
     const [query, setQuery] = useState('');
     const [data, setData] = useState<IDataObject>();
