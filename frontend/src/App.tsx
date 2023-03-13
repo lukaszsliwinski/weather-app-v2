@@ -3,6 +3,7 @@ import axios from 'axios';
 import './assets/global.css';
 
 // import components
+import Alert from './components/Alert';
 import Main from './layouts/Weather';
 import HourlyForecast from './layouts/HourlyForecast';
 import DailyForecast from './layouts/DailyForecast';
@@ -10,18 +11,28 @@ import DailyForecast from './layouts/DailyForecast';
 import { IDataObject } from './types';
 
 function App() {
+    const [alertVisible, setAlertVisible] = useState(false);
     const [query, setQuery] = useState('');
     const [data, setData] = useState<IDataObject>();
+
+    // show alert and hide after 4 seconds
+    const showHideAlert = () => {
+        setAlertVisible(true);
+        const timer = setTimeout(() => {
+            setAlertVisible(false);
+        }, 4000);
+        return () => clearTimeout(timer);
+    };
 
     // fetch weather data on form submit and handle error
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (typeof query !== 'string') {
-            alert(`${query} not found!`)
+            showHideAlert();
         } else {
             const response = await axios.post('/api/weather', { city: query });
             if (response.data.msg === 'error') {
-                alert(`${query} not found!`)
+                showHideAlert();
             } else {
                 setData(response.data);
                 setQuery('');
@@ -30,7 +41,8 @@ function App() {
     };
 
     return (
-        <div className='bg-photo py-8 font-medium text-sm text-gray-200'>
+        <div className='bg-photo py-16 font-medium text-sm text-gray-200'>
+            <Alert alertVisible={alertVisible} setAlertVisible={setAlertVisible} query={query} />
             <div className="mx-auto p-6 max-w-[30rem] backdrop-blur-md bg-gray-700/20 rounded-2xl">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <div className="relative">
@@ -42,7 +54,7 @@ function App() {
                             onChange={e => setQuery(e.target.value)}
                             type="search"
                             id="default-search"
-                            className="block w-full p-4 pl-10 text-sm border border-gray-200/20 focus:border-gray-200 rounded-lg bg-transparent focus:outline-none focus:ring-0"
+                            className="block w-full p-4 pl-10 pr-24 text-sm border border-gray-200/20 focus:border-gray-200 rounded-lg bg-transparent focus:outline-none focus:ring-0"
                             placeholder="Enter a city"
                             required
                         />
