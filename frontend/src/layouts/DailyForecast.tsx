@@ -22,8 +22,8 @@ function DailyForecast({ dailyForecast }: {dailyForecast: IDailyForecast }) {
     };
 
     return (
-        <div className="mt-8">
-            <h2 className='text-center my-2'>daily forecast</h2>
+        <div className="mt-4 py-2 bg-gray-200/20 shadow-lg rounded-md">
+            <h2 className='text-base text-center mb-4 underline'>daily forecast</h2>
             <div className='flex justify-around'>{content}</div>
         </div>
     );

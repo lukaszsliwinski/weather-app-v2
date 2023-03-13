@@ -22,8 +22,8 @@ function HourlyForecast({ hourlyForecast }: { hourlyForecast: IHourlyForecast })
     };
 
     return (
-        <div className="mt-8">
-            <h2 className='text-center my-2'>next 24 hours</h2>
+        <div className="mt-8 py-2 bg-gray-200/20 shadow-lg rounded-md">
+            <h2 className='text-base text-center mb-4 underline'>next 24 hours</h2>
             <div className='flex justify-around'>{content}</div>
         </div>
     );
