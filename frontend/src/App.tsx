@@ -42,11 +42,11 @@ function App() {
                             onChange={e => setQuery(e.target.value)}
                             type="search"
                             id="default-search"
-                            className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="block w-full p-4 pl-10 text-sm border border-gray-200/20 focus:border-gray-200 rounded-lg bg-transparent focus:outline-none focus:ring-0"
                             placeholder="Enter a city"
                             required
                         />
-                        <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">search</button>
+                        <button type="submit" className="text-white absolute right-2.5 bottom-2.5 shadow-md bg-gray-200/30 hover:bg-gray-200/20 font-medium rounded-lg text-sm px-4 py-2">search</button>
                     </div>
                 </form>
                 {data &&
