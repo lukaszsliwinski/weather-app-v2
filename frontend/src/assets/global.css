@@ -8,3 +8,12 @@
   background-size: cover;
   background-position-x: center;
 }
+
+/* Change background and text color in autofill input */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #275CAD inset !important;
+    -webkit-text-fill-color: #E5E7EB !important;
+}
