@@ -4,6 +4,7 @@ import './assets/global.css';
 
 // import components
 import Alert from './components/Alert';
+import About from './components/About';
 import Main from './layouts/Weather';
 import HourlyForecast from './layouts/HourlyForecast';
 import DailyForecast from './layouts/DailyForecast';
@@ -61,12 +62,12 @@ function App() {
                         <button type="submit" className="text-white absolute right-2.5 bottom-2.5 shadow-md bg-gray-200/30 hover:bg-gray-200/20 font-medium rounded-lg text-sm px-4 py-2">search</button>
                     </div>
                 </form>
-                {data &&
+                {data ?
                     <>
                         <Main data={data} />
                         <HourlyForecast hourlyForecast={data.hourlyForecast}/>
                         <DailyForecast dailyForecast={data.dailyForecast} />
-                    </>}
+                    </> : <About />}
             </div>
         </div>
 
