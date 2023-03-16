@@ -4,7 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: '480px'
+      },
+      minHeight: {
+        'screen-mobile': 'calc(var(--vh, 1vh) * 100)',
+      }
+    },
   },
   plugins: [],
 }
