@@ -42,9 +42,9 @@ function App() {
     };
 
     return (
-        <div className='bg-photo h-screen-mobile xs:py-8 sm:py-16 font-medium text-sm text-gray-200'>
+        <div className='bg-photo min-h-screen-mobile xs:py-8 sm:py-16 font-medium text-sm text-gray-200'>
             <Alert alertVisible={alertVisible} setAlertVisible={setAlertVisible} query={query} />
-            <div className="xs:m-auto absolute inset-0 pt-16 xs:py-6 px-3 xs:px-6 max-w-[30rem] h-screen xs:h-fit backdrop-blur-md bg-gray-700/20 xs:rounded-2xl">
+            <div className="xs:m-auto py-16 xs:py-6 px-3 xs:px-6 max-w-[30rem] h-fit backdrop-blur-md bg-gray-700/20 xs:rounded-2xl">
                 <form onSubmit={(event) => handleSubmit(event)}>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
