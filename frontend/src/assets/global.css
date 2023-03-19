@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* scrollbar */
 html {
   scrollbar-color: #1e3a8a #2563eb;
@@ -38,6 +37,6 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #275CAD inset !important;
-    -webkit-text-fill-color: #E5E7EB !important;
+  -webkit-box-shadow: 0 0 0 30px #275cad inset !important;
+  -webkit-text-fill-color: #e5e7eb !important;
 }

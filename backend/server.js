@@ -4,7 +4,7 @@ const express = require('express');
 const bp = require('body-parser');
 const app = express();
 
-const weather = require('./weather.controller')
+const weather = require('./weather.controller');
 
 // Dotenv package
 require('dotenv').config();
@@ -16,20 +16,17 @@ const PORT = process.env.PORT || 3001;
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-
 // Have Node serve the files for built React app
 app.use(express.static(path.resolve(__dirname, '../frontend/build')));
-
 
 // Handle POST requests to /api/weather route
 app.post('/api/weather', weather);
 
 // All other GET requests not handled before will return our React app
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
-
 app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+  console.log(`Server listening on ${PORT}`);
 });

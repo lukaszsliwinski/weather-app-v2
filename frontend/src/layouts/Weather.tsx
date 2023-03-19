@@ -9,51 +9,68 @@ import { ReactComponent as Drop } from '../assets/svg/drop.svg';
 
 import { IDataObject } from '../types';
 
-function Main({ data }: {data: IDataObject}) {
-    return (
-        <div className="p-2 pt-4">
-            <div className="flex flex-col xs:flex-row justify-between">
-                <div>
-                    <h1 className="text-3xl">{data.place}</h1>
-                    <span className="font-normal text-base">{data.weather.description}</span>
-                </div>
-                <div className="flex flex-col xs:items-end mt-4 xs:mt-0">
-                    <span className="text-base">{data.today} {data.now}</span>
-                    <div className="flex font-normal text-sm mt-1">
-                        <Sun className="mr-0.5 w-3.5"/><Arrows className="mt-1 mr-2 h-3"/>{data.weather.sunrise} - {data.weather.sunset}
-                    </div>
-                </div>
-            </div>
-            <div className="xs:grid xs:grid-cols-3 xs:mt-8">
-                <div className="col-span-2 flex justify-center my-4 xs:my-0">
-                    <img className="w-24 xs:w-32" src={data.weather.icon} alt="Weather icon" />
-                    <div className="flex flex-col justify-center items-center">
-                        <span className="text-4xl xs:text-5xl">{data.weather.temp}°C</span>
-                        <span className="text-sm">sensed&nbsp;<span className="text-base">{data.weather.sensed}°C</span>
-                        </span>
-                    </div>
-                </div>
-                <div className="flex xs:flex-col justify-around xs:justify-start">
-                    <div className="grid grid-cols-5 w-28 font-normal text-sm">
-                        <div className="col-start-2 flex"><TempMax className="w-3.5"/></div>
-                        <div className="col-span-3">{data.weather.max}°C</div>
-                        <div className="col-start-2 flex"><TempMin className="w-3.5"/></div>
-                        <div className="col-span-3">{data.weather.min}°C</div>
-                        <div className="col-start-2 flex"><Wind className="w-3.5"/></div>
-                        <div className="col-span-3">{data.weather.wind} m/s</div>
-                    </div>
-                    <div className="grid grid-cols-5 w-28 font-normal text-sm">
-                        <div className="col-start-2 flex"><Cloud className="w-3.5"/></div>
-                        <div className="col-span-3">{data.weather.cloudiness} %</div>
-                        <div className="col-start-2 flex"><Pressure className="w-3"/></div>
-                        <div className="col-span-3">{data.weather.pressure} hPa</div>
-                        <div className="col-start-2 flex"><Drop className="w-2.5"/></div>
-                        <div className="col-span-3">{data.weather.humidity} %</div>
-                    </div>
-                </div>
-            </div>
+function Main({ data }: { data: IDataObject }) {
+  return (
+    <div className="p-2 pt-4">
+      <div className="xs:flex-row flex flex-col justify-between">
+        <div>
+          <h1 className="text-3xl">{data.place}</h1>
+          <span className="text-base font-normal">{data.weather.description}</span>
         </div>
-    );
-};
+        <div className="xs:items-end xs:mt-0 mt-4 flex flex-col">
+          <span className="text-base">
+            {data.today} {data.now}
+          </span>
+          <div className="mt-1 flex text-sm font-normal">
+            <Sun className="mr-0.5 w-3.5" />
+            <Arrows className="mt-1 mr-2 h-3" />
+            {data.weather.sunrise} - {data.weather.sunset}
+          </div>
+        </div>
+      </div>
+      <div className="xs:grid xs:grid-cols-3 xs:mt-8">
+        <div className="xs:my-0 col-span-2 my-4 flex justify-center">
+          <img className="xs:w-32 w-24" src={data.weather.icon} alt="Weather icon" />
+          <div className="flex flex-col items-center justify-center">
+            <span className="xs:text-5xl text-4xl">{data.weather.temp}°C</span>
+            <span className="text-sm">
+              sensed&nbsp;<span className="text-base">{data.weather.sensed}°C</span>
+            </span>
+          </div>
+        </div>
+        <div className="xs:flex-col xs:justify-start flex justify-around">
+          <div className="grid w-28 grid-cols-5 text-sm font-normal">
+            <div className="col-start-2 flex">
+              <TempMax className="w-3.5" />
+            </div>
+            <div className="col-span-3">{data.weather.max}°C</div>
+            <div className="col-start-2 flex">
+              <TempMin className="w-3.5" />
+            </div>
+            <div className="col-span-3">{data.weather.min}°C</div>
+            <div className="col-start-2 flex">
+              <Wind className="w-3.5" />
+            </div>
+            <div className="col-span-3">{data.weather.wind} m/s</div>
+          </div>
+          <div className="grid w-28 grid-cols-5 text-sm font-normal">
+            <div className="col-start-2 flex">
+              <Cloud className="w-3.5" />
+            </div>
+            <div className="col-span-3">{data.weather.cloudiness} %</div>
+            <div className="col-start-2 flex">
+              <Pressure className="w-3" />
+            </div>
+            <div className="col-span-3">{data.weather.pressure} hPa</div>
+            <div className="col-start-2 flex">
+              <Drop className="w-2.5" />
+            </div>
+            <div className="col-span-3">{data.weather.humidity} %</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default Main;
