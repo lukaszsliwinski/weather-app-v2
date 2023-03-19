@@ -1,4 +1,4 @@
-// Required dependencies
+// required dependencies
 const path = require('path');
 const express = require('express');
 const bp = require('body-parser');
@@ -6,27 +6,29 @@ const app = express();
 
 const weather = require('./weather.controller');
 
-// Dotenv package
+// dotenv package
 require('dotenv').config();
 
-// Port number
+// port number
 const PORT = process.env.PORT || 3001;
 
-// Middleware
+// environment
+const NODE_ENV = process.env.NODE_ENV;
+
+// middleware
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
-
-// Have Node serve the files for built React app
 app.use(express.static(path.resolve(__dirname, '../frontend/build')));
 
-// Handle POST requests to /api/weather route
+// post endpoint
 app.post('/api/weather', weather);
 
-// All other GET requests not handled before will return our React app
+// render react app
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
+// run server
 app.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  console.log(`server listening on ${PORT}\nenv: ${NODE_ENV}`);
 });
