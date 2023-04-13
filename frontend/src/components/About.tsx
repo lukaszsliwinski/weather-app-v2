@@ -18,7 +18,7 @@ export default function About() {
           www.openweathermap.org
         </a>
         <br />
-        Read more about me and see my other web apps with source codes at:
+        Read more about me and see my other apps with source codes at:
         <br />
       </p>
       <a
