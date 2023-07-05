@@ -14,7 +14,7 @@ function HourlyForecast({ hourlyForecast }: { hourlyForecast: IHourlyForecast })
           <Clock className="mr-1.5 w-3" />
           {hourlyForecast.time[i]}
         </div>
-        <img className="w-14 sm:w-20" src={hourlyForecast.icons[i]} alt="Weather icon" />
+        <img className="w-14 sm:w-20" src={hourlyForecast.icons[i]} alt="Hourly weather icon" />
         <div className="flex text-xs sm:text-sm">
           <Temp className="mr-1.5 w-2" />
           {hourlyForecast.temp[i]}°C

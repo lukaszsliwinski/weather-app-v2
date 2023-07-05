@@ -22,6 +22,7 @@ export default function About() {
         <br />
       </p>
       <a
+        role="link"
         href="https://lukaszsliwinski.pl/"
         className="w-100 mt-1 block cursor-pointer text-center text-base font-bold underline underline-offset-2 hover:text-gray-300"
       >

@@ -30,7 +30,7 @@ function Main({ data }: { data: IDataObject }) {
       </div>
       <div className="xs:grid xs:grid-cols-3 xs:mt-8">
         <div className="xs:my-0 col-span-2 my-4 flex justify-center">
-          <img className="xs:w-32 w-24" src={data.weather.icon} alt="Weather icon" />
+          <img className="xs:w-32 w-24" src={data.weather.icon} alt="General weather icon" />
           <div className="flex flex-col items-center justify-center">
             <span className="xs:text-5xl text-4xl">{data.weather.temp}°C</span>
             <span className="text-sm">

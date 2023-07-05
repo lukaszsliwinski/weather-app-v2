@@ -19,7 +19,7 @@ function DailyForecast({ dailyForecast }: { dailyForecast: IDailyForecast }) {
           <Calendar className="mr-1.5 w-3" />
           {width < 480 ? dailyForecast.nextDays[i].substring(0, 3) : dailyForecast.nextDays[i]}
         </div>
-        <img className="w-14 sm:w-20" src={dailyForecast.dailyIcons[i]} alt="Weather icon" />
+        <img className="w-14 sm:w-20" src={dailyForecast.dailyIcons[i]} alt="Daily weather icon" />
         <div className="flex text-xs sm:text-sm">
           <Temp className="mr-1.5 w-2" />
           <div className="xs:flex-row xs:space-x-1 flex flex-col items-start">
