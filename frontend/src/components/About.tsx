@@ -23,10 +23,10 @@ export default function About() {
       </p>
       <a
         role="link"
-        href="https://lukaszsliwinski.pl/"
-        className="w-100 mt-1 block cursor-pointer text-center text-base font-bold underline underline-offset-2 hover:text-gray-300"
+        href="https://portfolio.lukaszsliwinski.pl/"
+        className="w-100 mt-4 block cursor-pointer text-center font-bold underline underline-offset-2 hover:text-gray-300"
       >
-        www.lukaszsliwinski.pl
+        www.portfolio.lukaszsliwinski.pl
       </a>
     </div>
   );
