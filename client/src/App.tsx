@@ -41,6 +41,11 @@ function App() {
     }
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(event.target.value);
+    setAlertVisible(false);
+  }
+
   return (
     <div className="bg-photo min-h-screen-mobile text-sm font-medium text-gray-200 sm:py-16">
       <Alert alertVisible={alertVisible} setAlertVisible={setAlertVisible} query={query} />
@@ -66,7 +71,7 @@ function App() {
             </div>
             <input
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(event) => handleInputChange(event)}
               type="search"
               id="default-search"
               className="block w-full rounded-lg border border-gray-200/20 bg-transparent p-4 pl-10 pr-24 text-sm focus:border-gray-200 focus:outline-none focus:ring-0"
