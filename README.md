@@ -6,7 +6,15 @@
 
 ## About project
 
-This is my side-project that I made to improve my web programming skills.<br>This is web application for checking actual weather in choosen city. Write a city name above, to check weather conditions and forecast for next hours and days.
+This is my side-project that I made to improve my web programming skills using React.<br>
+This is web application for checking actual weather in choosen city.<br><br>
+Features:
+
+- current weather conditions in choosen city
+- forecast for next hours and days
+
+## TODO's
+- implement charts with forecast
 
 ## Used technologies
 
